@@ -17,5 +17,3 @@ Team Strategy
 * Group standups at 8:00, 1:00, & 4:45
 * Individual standups after groups, and the 1:00 standup will be a snack run also
 * meetings with Duke/Lucas at 10:30 & 2:30
-
-!{schema}[./schema.png]
