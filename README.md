@@ -1,4 +1,3 @@
-== README
 
 Team Strategy
 1) Homies Help Homies, ask for help if you get stuck for 15-30 min.
