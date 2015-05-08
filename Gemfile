@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'rest-client'
+
+gem 'google-api-client', :require => 'google/api_client'
+
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
