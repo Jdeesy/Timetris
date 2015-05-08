@@ -7,17 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
- <!-- Google Sign In -->
-   <div>
-      <% if current_user %>
-        Signed in as <strong><%= current_user.name %></strong>!
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
-      <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-      <% end %>
-    </div>
-
-<%= yield %>
+  
+  <div class="container">
+    <%= render partial: "layouts/navbar" %>
+    <%= render partial: "layouts/tabs" %>
+    <%= render partial: "layouts/jumbotron" %>
+  </div>
 
 </body>
 </html>
+
