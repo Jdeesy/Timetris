@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  let!( :user ){ User.create!(name: "John" }
+  let!( :user ){ User.create!(name: "John" ) }
   let!( :task ){ Task.create!(creator: user, time_box: 15, due_date: Time.now) }
   let!( :task_report ){ TaskReport.create!(task: task) }
   
@@ -20,11 +20,11 @@ RSpec.describe Task, type: :model do
   end
 
   describe "task Relationships" do 
-    if 'should return the user' do
+    it 'should return the user' do
       expect(task.creator).to be(user)
     end
 
-    if 'should return the task' do
+    it 'should return the task' do
       expect(task.task_reports[0].task).to be(task)
     end
   end

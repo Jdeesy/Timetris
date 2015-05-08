@@ -1,0 +1,2 @@
+class TaskReportController < ApplicationController
+end

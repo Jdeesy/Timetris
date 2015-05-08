@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
-  def show
+  def index
+  end
+
+  def completed
   end
 end

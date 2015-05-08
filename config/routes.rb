@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   get 'sessions/destroy'
 
-  get 'home/show'
+  root 'home#index'
+
+  get '/completed' => 'home#completed'
+
+  resources :tasks, only: [:create, :update, :destroy]
+  resources :task_reports, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
