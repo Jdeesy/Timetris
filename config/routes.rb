@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/completed' => 'home#completed'
 
   resources :sessions, only: [:create, :destroy]
-  resources :tasks, only: [:create, :update, :destroy]
-  resources :task_reports, only: [:create, :update, :destroy]
+  resources :tasks#, only: [:index, :create, :update, :destroy]
+  resources :task_reports#, only: [:index, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
