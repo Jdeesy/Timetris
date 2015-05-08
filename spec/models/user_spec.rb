@@ -33,11 +33,11 @@ RSpec.describe User, type: :model do
 
   describe "User Relationships" do 
     it 'should return the user' do
-      expect(user.tasks[0].creator).to be(user)
+      expect(user.tasks[0].creator).to eq(user)
     end
 
     it 'should return the user' do
-      expect(user.task_reports[0].creator).to be(user)
+      expect(user.task_reports[0].creator).to eq(user)
     end
   end
 end

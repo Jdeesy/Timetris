@@ -15,7 +15,7 @@ RSpec.describe Task, type: :model do
     end
 
     it 'should return a task due date' do
-      expect(task.uid).to be_a(Time)
+      expect(task.due_date).to be_a(Time)
     end
   end
 
