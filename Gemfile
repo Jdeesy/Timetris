@@ -34,8 +34,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-
-  gem 'rake'
+  gem 'better_errors'
+  # gem 'rake'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
