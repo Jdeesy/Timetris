@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get '/completed' => 'home#completed'
+  get '/welcome' => 'home#welcome'
 
   resources :sessions, only: [:create, :destroy]
-  resources :tasks#, only: [:index, :create, :update, :destroy]
-  resources :task_reports#, only: [:index, :create, :update, :destroy]
+  resources :tasks #, only: [:index, :create, :update, :destroy]
+  resources :task_reports #, only: [:index, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
