@@ -1,0 +1,12 @@
+<%= render partial: "tasks/new" %>
+
+<table>
+  <tr>
+    <%= render 'task_reports/headers' %>
+  </tr>
+  <% @tasks.each do |report| %>
+    <tr>
+      <%= render partial: "task_reports/task_row", locals: {report: report} %>
+    </tr>
+  <% end %>
+</table>

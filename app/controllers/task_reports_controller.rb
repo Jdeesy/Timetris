@@ -1,9 +1,6 @@
 class TaskReportsController < ApplicationController
   def index
-    @taskreports = current_user.task_reports.includes(:task).select{ |report| report.end_time }
-  end
-
-  def update
+    @taskreports = current_user.completed_tasks
   end
 
   def start

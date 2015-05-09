@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   root 'home#index'
-  get '/completed' => 'home#completed'
-  get '/welcome' => 'home#welcome'
+  get '/pending' => 'home#pending', as: 'pending'
+  get '/completed' => 'home#completed', as: 'completed'
+  get '/welcome' => 'home#welcome', as: 'welcome'
 
   patch '/task_reports/:id/start' => 'task_reports#start', as: "start_task"
   patch '/task_reports/:id/complete' => 'task_reports#complete', as: "complete_task"

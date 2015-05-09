@@ -32,8 +32,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def completed_tasks
+    self.task_reports.includes(:task).select{ |report| report.end_time }
+  end
+
   def pending_tasks
-    self.task_reports.includes(:task).select{ |report| report.end_time == nil }
+    self.task_reports.includes(:task).reject{ |report| report.end_time }
   end
 
   def possible_tasks
