@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  skip_before_action :require_login, only: [:welcome]
+
   def index
     @user = current_user
     @time_to_next_event = @user.time_to_next_event
