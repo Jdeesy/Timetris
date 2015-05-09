@@ -1,8 +1,10 @@
 module CalendarAPI
 
   def api_client
+    self.refresh_token! if Time.at(self.oauth_expires_at).utc <= Time.now.utc
     api_client = Google::APIClient.new
     api_client.authorization.access_token = self.oauth_token
+    api_client.authorization.refresh_token = self.refresh_token
     return api_client
   end
 
@@ -26,8 +28,8 @@ module CalendarAPI
   end
 
   def available
-    return free_busy({'timeMin'       => Time.now.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                      'timeMax'       => (Time.now + 86400).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    return free_busy({'timeMin' => Time.now.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                      'timeMax' => (Time.now + 86400).strftime("%Y-%m-%dT%H:%M:%S.000Z")
                       }).data
   end
 
