@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider 
+      user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
       user.email = auth.info.email
@@ -29,6 +29,16 @@ class User < ActiveRecord::Base
       self.oauth_token = response["access_token"]
       self.oauth_expires_at = Time.now.utc + response["expires_in"]
       self.save
+    end
+  end
+
+  def pending_tasks
+    self.task_reports.includes(:task).select{ |report| report.end_time == nil }
+  end
+
+  def possible_tasks
+    pending_tasks.select do |report|
+      report.task.time_box <= time_to_next_event
     end
   end
 

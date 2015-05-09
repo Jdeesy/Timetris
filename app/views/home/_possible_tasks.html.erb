@@ -5,7 +5,7 @@
     <th class="col-md-3">Due Date</th>
     <th class="col-md-3">Priority</th>
   </tr>
-  <% @possible_tasks.each do |report| %>
+  <% @tasks.each do |report| %>
     <tr>
       <td class="col-md-3"><%= link_to "#{report.task.name}", report.task %></td>
       <td class="col-md-3"><%= report.task.time_box %> min</td>
@@ -15,6 +15,7 @@
         <td class="col-md-3">N/A</td>
       <% end %>
       <td class="col-md-3">NEED TO PUT PRIORITY HERE</td>
+      <td><%= button_to "Start Task", start_task_path(report), method: :patch %></td>
     </tr>
   <% end %>
 </table>
