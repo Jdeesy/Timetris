@@ -1,2 +1,13 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<% if @time_to_next_event > 0 %>
+
+<h1>Status: Free</h1>
+<h2>Here are some things to do before your next event:</h2>
+<%= render "possible_tasks" %>
+
+<% else %>
+
+<h1>Status: Busy</h1>
+<h2>Here's what you're currently busy with:</h2>
+<%= render "calendar_event" %>
+
+<% end %>
