@@ -10,44 +10,67 @@ module CalendarAPI
 
   def events_list(params)
     calendar_api = api_client.discovered_api('calendar', 'v3')
-    return api_client.execute(:api_method => calendar_api.events.list, :parameters => params)
+    return api_client.execute(:api_method => calendar_api.events.list,
+                              :parameters => params)
   end
 
-  def free_busy(params)
+  def events_insert(body)
     calendar_api = api_client.discovered_api('calendar', 'v3')
-    return api_client.execute(:api_method => calendar_api.freebusy.query, :parameters => params)
+    return api_client.execute(:api_method => calendar_api.events.insert,
+                              :parameters => {'calendarId' => 'primary'},
+                              :body       => JSON.dump(body),
+                              :headers    => {'Content-Type' => 'application/json'})
   end
 
-  def find_event(index)
+  def events_patch(params, body)
+    calendar_api = api_client.discovered_api('calendar', 'v3')
+    return api_client.execute(:api_method => calendar_api.events.patch,
+                              :parameters => params,
+                              :body       => JSON.dump(body),
+                              :headers    => {'Content-Type' => 'application/json'})
+  end
+
+  def upcoming_events
+    start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    end_time = (Time.now.utc + 86400).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     return events_list({'calendarId'    => 'primary',
                         'orderBy'       => 'startTime',
                         'singleEvents'  => 'true',
-                        'timeMin'       => Time.now.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                        'maxResults'    => (1 + index).to_s
-                        }).data.items[index]
-  end
-
-  def available
-    return free_busy({'timeMin' => Time.now.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                      'timeMax' => (Time.now + 86400).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-                      }).data
-  end
-
-  def next_event
-    n = 0
-    loop do
-      event = find_event(0)
-      return event unless event.start.date
-      n += 1
-    end
-  end
-
-  def available?
-
+                        'timeMin'       => start_time,
+                        'timeMax'       => end_time
+                        }).data.items.select { |event| event.start['dateTime'] }
   end
 
   def time_to_next_event
-
+    events = upcoming_events
+    if events.any?
+      if Time.at(events[0].start['dateTime']).utc > Time.now.utc
+        return (Time.at(events[0].start['dateTime']) - Time.now.utc)/60
+      else
+        return 0
+      end
+    else
+      return 1440
+    end
   end
 
+  def begin_task(taskreport)
+    start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    end_time = (Time.now.utc + (taskreport.task.time_box * 60)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    summary = taskreport.task.name
+    event = events_insert({'start'   => {'dateTime' => start_time},
+                           'end'     => {'dateTime' => end_time},
+                           'summary' => summary
+                          }).data
+    taskreport.update(event_id: event.id, start_time: start_time)
+  end
+
+  def complete_task(taskreport)
+    end_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    event = events_patch({'calendarId' => 'primary', 
+                          'eventId'    => taskreport.event_id},
+                         {'end'        => {'dateTime' => end_time}}
+                         ).data
+    taskreport.update(end_time: end_time)
+  end
 end
