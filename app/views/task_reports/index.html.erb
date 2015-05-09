@@ -4,27 +4,27 @@ Reports
     <tr>
       <th class="col-md-1">Task Name</th>
       <th class="col-md-1">Time Box</th>
+      <th class="col-md-1">Due Date</th>
+      <th class="col-md-1">Priority</th>
       <th class="col-md-1">How Long It Took</th>
       <th class="col-md-1">How Closely You Guessed It Correctly</th>
       <th class="col-md-1">Start Date</th>
       <th class="col-md-1">End Date</th>
-      <th class="col-md-1">Due Date</th>
-      <th class="col-md-1">Priority</th>
     </tr>
     <% @taskreports.each do |report| %>
       <tr>
         <td class="col-md-1"><%= link_to "#{report.task.name}", report.task %></td>
         <td class="col-md-1"><%= report.task.time_box %> min</td>
-        <td class="col-md-1">TIME IT TOOK, DO THE MATH HERE</td>
-        <td class="col-md-1">HOW CLOSE THEY WERE TO GET IT RIGHT, % HERE</td>
-        <td class="col-md-1"><%= report.start_time %></td>
-        <td class="col-md-1"><%= report.end_time %></td>
         <% if report.task.due_date %>
           <td class="col-md-1"><%= report.task.due_date %></td>
         <% else %>
           <td class="col-md-1">N/A</td>
         <% end %>
         <td class="col-md-1">NEED TO PUT PRIORITY HERE</td>
+        <td class="col-md-1">TIME IT TOOK, DO THE MATH HERE</td>
+        <td class="col-md-1">HOW CLOSE THEY WERE TO GET IT RIGHT, % HERE</td>
+        <td class="col-md-1"><%= report.start_time %></td>
+        <td class="col-md-1"><%= report.end_time %></td>
       </tr>
     <% end %>
   </table>

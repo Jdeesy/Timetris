@@ -1,3 +1,5 @@
-
-  <%= render "in_progress_task_report" %>
-
+<% if @taskreport.end_time %>
+  <%= render "completed" %>
+<% else %>
+  <%= render "in_progress" %>
+<% end %>
