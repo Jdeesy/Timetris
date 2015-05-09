@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = current_user.task_reports.select{ |report| report.end_time == nil }
+    @tasks = current_user.pending_tasks
   end
 
   def create
