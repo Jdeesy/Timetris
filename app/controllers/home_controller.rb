@@ -17,6 +17,10 @@ class HomeController < ApplicationController
     @tasks = current_user.completed_tasks
   end
 
+  def reports
+    @tasks = current_user.completed_tasks
+  end
+
   def welcome
 
   end

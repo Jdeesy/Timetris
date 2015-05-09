@@ -1,1 +1,7 @@
-<%= @task.name %>
+<% if @task.start_time == nil %>
+	<%= render "pending" %>
+<% elsif @task.end_time %>
+  <%= render "completed" %>
+<% else %>
+  <%= render "in_progress" %>
+<% end %>
