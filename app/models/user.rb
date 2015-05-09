@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
     response = ActiveSupport::JSON.decode(RestClient.post "https://accounts.google.com/o/oauth2/token", data)
     if response["access_token"].present?
       self.oauth_token = response["access_token"]
+      self.oauth_expires_at = Time.now.utc + response["expires_in"]
       self.save
     end
   end
