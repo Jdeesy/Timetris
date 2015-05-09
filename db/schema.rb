@@ -11,39 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509164832) do
+ActiveRecord::Schema.define(version: 20150508013139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "task_reports", force: :cascade do |t|
-    t.integer  "task_id"
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "creator_id",              null: false
+    t.string   "name",                    null: false
+    t.integer  "time_box",   default: 15, null: false
+    t.datetime "due_date"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string   "event_id"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "time_box",   default: 15
-    t.datetime "due_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "name"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
+    t.string   "email"
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "refresh_token"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "email"
-    t.string   "refresh_token"
   end
 
 end

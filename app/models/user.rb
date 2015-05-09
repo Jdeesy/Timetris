@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   include CalendarAPI
 
-  has_many :tasks
-  has_many :task_reports, through: :tasks
+  has_many :tasks, foreign_key: :creator_id
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -33,16 +32,16 @@ class User < ActiveRecord::Base
   end
 
   def completed_tasks
-    self.task_reports.includes(:task).select{ |report| report.end_time }
+    self.tasks.select{ |task| task.end_time }
   end
 
   def pending_tasks
-    self.task_reports.includes(:task).reject{ |report| report.end_time }
+    self.tasks.reject{ |task| task.end_time }
   end
 
   def possible_tasks
-    pending_tasks.select do |report|
-      report.task.time_box <= time_to_next_event
+    pending_tasks.select do |task|
+      task.time_box <= time_to_next_event
     end
   end
 

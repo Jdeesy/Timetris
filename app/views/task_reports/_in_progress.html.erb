@@ -1,4 +1,0 @@
-<h2>Current Task: <%= @taskreport.task.name %></h2>
-<h3>Started At: <%= @taskreport.start_time %></h3>
-<h3>Target Finish Time: <%= @taskreport.target_finish_time %></h3>
-<%= button_to "I'm Finished", complete_task_path(@taskreport), method: :patch %>

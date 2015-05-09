@@ -1,0 +1,8 @@
+<td class="col-md-3"><%= link_to "#{task.name}", task %></td>
+<td class="col-md-3"><%= task.time_box %> min</td>
+<% if task.due_date %>
+  <td class="col-md-3"><%= task.due_date %></td>
+<% else %>
+  <td class="col-md-3">N/A</td>
+<% end %>
+<td class="col-md-3">NEED TO PUT PRIORITY HERE</td>

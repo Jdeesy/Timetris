@@ -2,11 +2,11 @@
 
 <table>
   <tr>
-    <%= render 'task_reports/headers' %>
+    <%= render 'tasks/headers' %>
   </tr>
-  <% @tasks.each do |report| %>
+  <% @tasks.each do |task| %>
     <tr>
-      <%= render partial: "task_reports/task_row", locals: {report: report} %>
+      <%= render partial: "tasks/task_row", locals: {task: task} %>
     </tr>
   <% end %>
 </table>
