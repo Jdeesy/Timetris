@@ -58,19 +58,17 @@ module CalendarAPI
     start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_time = (Time.now.utc + (taskreport.task.time_box * 60)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     summary = taskreport.task.name
-    event = events_insert({'start'   => {'dateTime' => start_time},
+    return events_insert({'start'   => {'dateTime' => start_time},
                            'end'     => {'dateTime' => end_time},
                            'summary' => summary
                           }).data
-    taskreport.update(event_id: event.id, start_time: start_time)
   end
 
   def complete_task(taskreport)
     end_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    event = events_patch({'calendarId' => 'primary', 
+    return events_patch({'calendarId' => 'primary',
                           'eventId'    => taskreport.event_id},
                          {'end'        => {'dateTime' => end_time}}
                          ).data
-    taskreport.update(end_time: end_time)
   end
 end

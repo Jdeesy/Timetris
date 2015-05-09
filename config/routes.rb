@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/completed' => 'home#completed'
 
+  patch '/task_reports/:id/start' => 'task_reports#start', as: "start_task"
+  patch '/task_reports/:id/complete' => 'task_reports#complete', as: "complete_task"
+
   resources :sessions, only: [:create, :destroy]
   resources :tasks#, only: [:index, :create, :update, :destroy]
   resources :task_reports#, only: [:index, :create, :update, :destroy]
