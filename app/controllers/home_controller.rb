@@ -30,4 +30,11 @@ class HomeController < ApplicationController
 
   def welcome
   end
+
+  def complete_calendar
+    @upcoming_events = current_user.upcoming_events
+    @next_event = @upcoming_events[0]
+    current_user.complete_calendar_event(@next_event)
+    redirect_to root_path
+  end
 end
