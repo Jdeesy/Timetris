@@ -22,6 +22,5 @@ class HomeController < ApplicationController
   end
 
   def welcome
-
   end
 end

@@ -24,6 +24,12 @@ class TasksController < ApplicationController
     redirect_to task
   end
 
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    @task.destroy
+    redirect_to pending_path
+  end
+
   private
 
   def task_params
