@@ -15,9 +15,7 @@
             </ul>
           </li>
         <% else %>
-          <button type="button" class="g-signin">
-            <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-          </button>
+            <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "btn btn-default g-signin" %>
         <% end %>
       </ul>
     </div>
