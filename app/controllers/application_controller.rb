@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_completed_task
-    if current_user.tasks.any?
+    if current_user && current_user.tasks.any?
       task = current_user.tasks.last
       redirect_to task if task.task_in_progress
     end
