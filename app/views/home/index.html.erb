@@ -1,4 +1,4 @@
-<% if @time_to_next_event > 0 %>
+<% if @time_to_next_event > 0 && @tasks.any? %>
 
 	<h1>Status: Free</h1>
 	<h2>Here are some things to do before your next event:</h2>
@@ -13,7 +13,8 @@
 	    </tr>
 	  <% end %>
 	</table>
-
+<% elsif !@tasks.any? %>
+	<h2>You don't have any events on your calendar.</h2>
 
 <% else %>
 
