@@ -10,7 +10,7 @@
 		  <% @tasks.each do |task| %>
 		    <tr>
 		      <%= render partial: "tasks/task_row", locals: {task: task} %>
-		      <td><%= button_to "Start Task", start_task_path(task), method: :patch %></td>
+		      <%= render partial: "tasks/start_task", locals: {task: task} %>
 		    </tr>
 		  <% end %>
 		</table>
