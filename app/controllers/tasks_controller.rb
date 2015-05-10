@@ -10,7 +10,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by(id: params[:id])
-    render layout: "layouts/in_progress" if @task.start_time && @task.end_time == nil
+    render layout: "layouts/in_progress" if @task.task_in_progress
   end
 
   def start
