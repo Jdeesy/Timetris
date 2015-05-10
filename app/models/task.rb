@@ -6,7 +6,11 @@ class Task < ActiveRecord::Base
   end
 
   def task_time
-    return ((end_time - start_time)/60).to_i
+    if start_time && end_time
+      return ((end_time - start_time)/60).to_i
+    else
+      return 0
+    end
   end
 
   def difference

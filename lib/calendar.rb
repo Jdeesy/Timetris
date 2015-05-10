@@ -71,4 +71,12 @@ module CalendarAPI
                          {'end'        => {'dateTime' => end_time}}
                          ).data
   end
+
+  def complete_calendar_event(calendar_event)
+    end_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    return events_patch({'calendarId' => 'primary',
+                          'eventId'    => calendar_event.id},
+                         {'end'        => {'dateTime' => end_time}}
+                         ).data
+  end
 end
