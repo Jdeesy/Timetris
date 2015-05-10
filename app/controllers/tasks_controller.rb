@@ -31,6 +31,8 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
     if request.xhr?
       render partial: "new"
+    else
+      redirect_to pending_path
     end
   end
 
@@ -45,7 +47,25 @@ class TasksController < ApplicationController
     @task.update(task_params)
     if request.xhr?
       render partial: "list_item_header", locals: {task: @task}
+    else
+      redirect_to pending_path
     end
+  end
+
+  def timebox_subtract
+
+  end
+
+  def timebox_add
+
+  end
+
+  def priority_subtract
+
+  end
+
+  def priority_add
+
   end
 
   private
