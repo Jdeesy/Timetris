@@ -10,7 +10,6 @@ FactoryGirl.define do
   end
 
   factory :task do
-    association :creator, factory: :user, name: "John Doe"
     name        "Do cool stuff"
     time_box    15   
     due_date    Time.now

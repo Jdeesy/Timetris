@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   user = FactoryGirl.create(:user)
-  task = FactoryGirl.create(:task)
+  task = FactoryGirl.create(:task, creator: user)
   
   describe "Task Model Methods" do
     it 'should return a task id' do

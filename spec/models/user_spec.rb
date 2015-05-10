@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   user = FactoryGirl.create(:user)
-  task = FactoryGirl.create(:task)
+  task = FactoryGirl.create(:task, creator: user)
   
   describe "User Model Methods" do
     it 'should return a user id' do
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should return a user email' do
-      expect(user.name).to eq("john.doe@gmail.com")
+      expect(user.email).to eq("john.doe@gmail.com")
     end
 
     it 'should return a user name' do
