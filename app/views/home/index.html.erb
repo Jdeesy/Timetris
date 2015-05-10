@@ -1,20 +1,23 @@
-<% if @time_to_next_event > 0 && @tasks.any? %>
-
+<% if @time_to_next_event > 0 %>
 	<h1>Status: Free</h1>
-	<h2>Here are some things to do before your next event:</h2>
-	<table>
-	  <tr>
-			<%= render 'tasks/headers' %>
-	  </tr>
-	  <% @tasks.each do |task| %>
-	    <tr>
-	      <%= render partial: "tasks/task_row", locals: {task: task} %>
-	      <td><%= button_to "Start Task", start_task_path(task), class: "btn btn-default", method: :patch %></td>
-	    </tr>
-	  <% end %>
-	</table>
-<% elsif !@tasks.any? %>
-	<h2>You don't have any events on your calendar.</h2>
+
+	<% if @tasks.any? %>
+		<h2>Here are some things to do before your next event:</h2>
+		<table>
+		  <tr>
+				<%= render 'tasks/headers' %>
+		  </tr>
+		  <% @tasks.each do |task| %>
+		    <tr>
+		      <%= render partial: "tasks/task_row", locals: {task: task} %>
+		      <%= render partial: "tasks/start_task", locals: {task: task} %>
+		    </tr>
+		  <% end %>
+		</table>
+
+	<% elsif !@tasks.any? %>
+		<h2>You don't have any events on your calendar.</h2>
+	<% end %>
 
 <% else %>
 
