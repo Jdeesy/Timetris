@@ -22,7 +22,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem "factory_girl_rails", "~> 4.0"
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end

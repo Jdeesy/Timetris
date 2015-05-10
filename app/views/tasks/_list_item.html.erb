@@ -1,0 +1,6 @@
+<li class="list-group-item task" id="<%= task.id %>">
+  <%= render partial: "tasks/list_item_header", locals: {task: task} %>
+  <%= render partial: "tasks/list_item_timebox", locals: {task: task} %>
+  <%= render partial: "tasks/list_item_priority", locals: {task: task} %>
+  <%= render partial: "tasks/list_item_buttons", locals: {task: task} %>
+</li>

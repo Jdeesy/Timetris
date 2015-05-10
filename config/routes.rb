@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   patch '/tasks/:id/start' => 'tasks#start', as: "start_task"
   patch '/tasks/:id/complete' => 'tasks#complete', as: "complete_task"
 
+  post '/tasks/:id/tb_sub' => 'tasks#time_box_subtract'
+  post '/tasks/:id/tb_add' => 'tasks#time_box_add'
+  post '/tasks/:id/pr_sub' => 'tasks#priority_subtract'
+  post '/tasks/:id/pr_add' => 'tasks#priority_add'
+
   resources :sessions, only: [:create, :destroy]
   resources :tasks, only: [:create, :show, :destroy]
 
