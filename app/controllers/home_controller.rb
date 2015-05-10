@@ -18,6 +18,13 @@ class HomeController < ApplicationController
   end
 
   def reports
+    @count = current_user.total_count
+    @time_box = current_user.total_time_box
+    @task_time = current_user.total_task_time
+    @difference = current_user.total_difference
+    @avg_difference = current_user.average_difference
+    @avg_priority = current_user.average_priority
+    
     @tasks = current_user.completed_tasks
   end
 
