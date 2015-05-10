@@ -9,6 +9,8 @@
     <tr>
       <%= render partial: "tasks/task_row", locals: {task: task} %>
       <td><%= button_to "Start Task", start_task_path(task), method: :patch %></td>
+      <td><%= button_to "Remove Task", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %></td>
+
     </tr>
   <% end %>
 </table>
