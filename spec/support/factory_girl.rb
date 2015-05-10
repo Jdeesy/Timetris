@@ -1,8 +1,3 @@
-RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-end
-
-
 FactoryGirl.define do
   factory :user do
     provider         "google"
@@ -25,3 +20,4 @@ FactoryGirl.define do
     priority    2
   end
 end
+
