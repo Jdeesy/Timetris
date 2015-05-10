@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.cookie
 //= require jquery_ujs
+//= require jstz
 //= require bootstrap-sprockets
+//= require browser_timezone_rails/set_time_zone
 //= require_tree .
