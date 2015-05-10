@@ -24,10 +24,17 @@ class HomeController < ApplicationController
     @difference = current_user.total_difference
     @avg_difference = current_user.average_difference
     @avg_priority = current_user.average_priority
-    
+
     @tasks = current_user.completed_tasks
   end
 
   def welcome
+  end
+
+  def complete_calendar
+    @upcoming_events = current_user.upcoming_events
+    @next_event = @upcoming_events[0]
+    current_user.complete_calendar_event(@next_event)
+    redirect_to root_path
   end
 end
