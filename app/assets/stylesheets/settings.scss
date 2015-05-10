@@ -1,0 +1,43 @@
+$primary-color: green;
+
+body {
+  background-color: $primary-color;
+}
+
+.label-primary {
+  background-color: $primary-color;
+}
+
+.glyphicon-minus:before {
+  color: $primary-color;
+}
+
+.glyphicon-plus:before {
+  color: $primary-color;
+}
+
+.glyphicon-pencil:before {
+  color: $primary-color;
+}
+
+.jumbotron {
+  background-color: transparentize(#fff, 0.2);
+}
+
+.list-group-item {
+  background-color: transparentize(#ffffff, 0.4);
+}
+
+.btn-default {
+  background-color: transparentize(#ffffff, 0.2);
+}
+
+.form-control {
+  background-color: transparentize(#fff, 0.2);
+}
+
+.container-fluid {
+  background-color: transparentize(#ffffff, 0.5)!important;
+}
+
+
