@@ -2,8 +2,20 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Timetris</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" role="tablist">
+        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+        <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Pending", pending_path %></li>
+        <li class="<%= 'active' if current_page?(completed_path) %>"><%= link_to "Completed", completed_path %></li>
+        <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Reports", reports_path %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><a target="_blank" href="https://docs.google.com/forms/d/1PNhgfo13lDBA7bPfKr-t_FfeZ1zKN8xjrJRgJKDcxDk/viewform?usp=send_form">Feedback</a></li>
