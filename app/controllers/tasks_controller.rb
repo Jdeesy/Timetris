@@ -9,8 +9,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find_by(id: params[:id])
-    render layout: "layouts/in_progress" if @task.task_in_progress
+    if @task = Task.find_by(id: params[:id])
+      render layout: "layouts/in_progress" if @task.task_in_progress
+    else
+      redirect_to root_path
+    end
   end
 
   def start
