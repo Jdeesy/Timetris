@@ -20,4 +20,8 @@ class Task < ActiveRecord::Base
       return "#{0-difference} minutes over"
     end
   end
+
+  def task_in_progress
+    self.start_time && self.end_time == nil
+  end
 end

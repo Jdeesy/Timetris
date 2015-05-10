@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+  skip_before_action :require_completed_task, only: [:show, :complete]
+
   def create
     task = Task.new(task_params)
     task.update(creator: current_user)
@@ -8,6 +10,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by(id: params[:id])
+    render layout: "layouts/in_progress" if @task.task_in_progress
   end
 
   def start
