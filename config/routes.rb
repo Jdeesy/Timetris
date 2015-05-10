@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   post '/tasks/:id/pr_add' => 'tasks#priority_add'
 
   resources :sessions, only: [:create, :destroy]
-  resources :tasks #, only: [:index, :create, :update, :destroy]
+  resources :tasks, only: [:create, :show, :destroy]
+
+  get "*path", to: redirect('/')
 end
