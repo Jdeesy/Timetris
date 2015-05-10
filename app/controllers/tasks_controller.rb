@@ -52,20 +52,36 @@ class TasksController < ApplicationController
     end
   end
 
-  def timebox_subtract
-
+  def time_box_subtract
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.time_box_subtract
+      render json: Task.find_by(id: params[:id])
+    end
   end
 
-  def timebox_add
-
+  def time_box_add
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.time_box_add
+      render json: Task.find_by(id: params[:id])
+    end
   end
 
   def priority_subtract
-
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.priority_subtract
+      render json: Task.find_by(id: params[:id])
+    end
   end
 
   def priority_add
-
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.priority_add
+      render json: Task.find_by(id: params[:id])
+    end
   end
 
   private

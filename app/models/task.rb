@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
+  validates :time_box, :inclusion => { in: 1..1440 }
+  validates :priority, :inclusion => { in: 1..3 }
 
   def target_finish_time
     Time.at(self.start_time).utc + (self.time_box * 60)
@@ -23,5 +25,21 @@ class Task < ActiveRecord::Base
 
   def task_in_progress
     self.start_time && self.end_time == nil
+  end
+
+  def time_box_subtract
+    self.update(time_box: self.time_box -= self.creator.default_time_increment)
+  end
+
+  def time_box_add
+    self.update(time_box: self.time_box += self.creator.default_time_increment)
+  end
+
+  def priority_subtract
+    self.update(priority: self.priority -= 1)
+  end
+
+  def priority_add
+    self.update(priority: self.priority += 1)
   end
 end
