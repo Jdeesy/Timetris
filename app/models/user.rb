@@ -45,4 +45,31 @@ class User < ActiveRecord::Base
     end
   end
 
+  def total_count
+    self.tasks.count
+  end
+
+  def total_time_box
+    self.tasks.map(&:time_box).reduce(:+)
+  end
+
+  def total_task_time
+    self.tasks.map(&:task_time).reduce(:+)
+  end
+
+  def total_difference
+    self.tasks.map(&:difference).reduce(:+)
+  end
+
+  def average_priority
+    priorities = self.tasks.map(&:priority)
+    size = priorities.size
+    return priorities.reduce(:+)/size
+  end
+
+  def average_difference
+    differences = self.tasks.map(&:difference)
+    size = differences.size
+    return differences.reduce(:+)/size
+  end
 end
