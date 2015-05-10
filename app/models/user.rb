@@ -63,13 +63,14 @@ class User < ActiveRecord::Base
 
   def average_priority
     priorities = self.tasks.map(&:priority)
-    size = priorities.size
-    return priorities.reduce(:+)/size
+    if total_count != 0
+      return priorities.reduce(:+) / total_count
+    end
   end
 
   def average_difference
-    differences = self.tasks.map(&:difference)
-    size = differences.size
-    return differences.reduce(:+)/size
+    if total_count != 0
+      return total_difference / total_count
+    end
   end
 end
