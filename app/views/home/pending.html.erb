@@ -1,15 +1,10 @@
 <%= render partial: "tasks/new" %>
 
-<table>
-  <tr>
-    <%= render 'tasks/headers' %>
-    <td></td>
-  </tr>
+<br>
+
+<ul class="list-group">
   <% @tasks.each do |task| %>
-    <tr>
-      <%= render partial: "tasks/task_row", locals: {task: task} %>
-      <%= render partial: "tasks/start_task", locals: {task: task} %>
-      <%= render partial: "tasks/remove_task", locals: {task: task} %>
-    </tr>
+    <%= render partial: "tasks/list_item", locals: {task: task} %>
   <% end %>
-</table>
+</ul>
+

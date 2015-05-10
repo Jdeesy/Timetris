@@ -1,7 +1,7 @@
-<div>
+<div class="task-form">
   <%= form_for @task, :url => tasks_path, :html => {class: "form-inline"} do |f| %>
     <%= f.text_field :name, class: "form-control", placeholder: "Enter a new task" %>
 
-    <%= f.submit "Add", class: "btn btn-default" %>
+    <%= f.submit class: "btn btn-default" %>
   <% end %>
 </div>

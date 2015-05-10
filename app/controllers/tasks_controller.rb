@@ -27,10 +27,61 @@ class TasksController < ApplicationController
     redirect_to task
   end
 
+  def edit
+    @task = Task.find_by(id: params[:id])
+    if request.xhr?
+      render partial: "new"
+    else
+      redirect_to pending_path
+    end
+  end
+
   def destroy
     @task = Task.find_by(id: params[:id])
     @task.destroy
     redirect_to pending_path
+  end
+
+  def update
+    @task = Task.find_by(id: params[:id])
+    @task.update(task_params)
+    if request.xhr?
+      render partial: "list_item_header", locals: {task: @task}
+    else
+      redirect_to pending_path
+    end
+  end
+
+  def time_box_subtract
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.time_box_subtract
+      render json: Task.find_by(id: params[:id])
+    end
+  end
+
+  def time_box_add
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.time_box_add
+      render json: Task.find_by(id: params[:id])
+    end
+  end
+
+  def priority_subtract
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.priority_subtract
+      render json: Task.find_by(id: params[:id])
+    end
+  end
+
+  def priority_add
+    if request.xhr?
+      @task = Task.find_by(id: params[:id])
+      @task.priority_add
+      render json: Task.find_by(id: params[:id])
+    end
   end
 
   private
