@@ -1,0 +1,19 @@
+<li class="list-group-item task" id="<%= task.id %>">
+  <%= render partial: "tasks/list_item_header", locals: {task: task} %>
+  <span>Timebox:</span>
+  <a href="#" class="timebox-subtract"><span class="glyphicon glyphicon-minus"></span></a>
+  <span class="label label-primary"><%= task.time_box %> min</span>
+  <a href="#" class="timebox-add"><span class="glyphicon glyphicon-plus"></span></a>
+
+  <span>Priority:</span>
+  <a href="#" class="priority-subtract"><span class="glyphicon glyphicon-minus"></span></a>
+  <span class="label label-primary"><%= task.priority %></span>
+  <a href="#" class="priority-add"><span class="glyphicon glyphicon-plus"></span></a>
+
+  <span>Due:</span>
+  <input type="datetime-local" class="form-inline"></input>
+
+  <div class="btn-group inline pull-right" data-toggle="buttons-checkbox">
+  <%= button_to "Start Task", start_task_path(task), class: "btn btn-default", method: :patch %>
+  </div>
+</li>

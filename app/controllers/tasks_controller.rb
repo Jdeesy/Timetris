@@ -24,10 +24,25 @@ class TasksController < ApplicationController
     redirect_to task
   end
 
+  def edit
+    @task = Task.find_by(id: params[:id])
+    if request.xhr?
+      render partial: "new"
+    end
+  end
+
   def destroy
     @task = Task.find_by(id: params[:id])
     @task.destroy
     redirect_to pending_path
+  end
+
+  def update
+    @task = Task.find_by(id: params[:id])
+    @task.update(task_params)
+    if request.xhr?
+      render partial: "list_item_header", locals: {task: @task}
+    end
   end
 
   private
