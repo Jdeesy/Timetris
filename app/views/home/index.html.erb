@@ -1,28 +1,46 @@
 <% if @time_to_next_event > 0 %>
+	
 	<h1>Status: Free</h1>
 
-	<% if @tasks.any? %>
-		<h2>Here are some things to do before your next event:</h2>
-		<table>
-		  <tr>
-				<%= render 'tasks/headers' %>
-		  </tr>
-		  <% @tasks.each do |task| %>
-		    <tr>
-		      <%= render partial: "tasks/task_row", locals: {task: task} %>
-		      <%= render partial: "tasks/start_task", locals: {task: task} %>
-		    </tr>
-		  <% end %>
-		</table>
-
-	<% elsif !@tasks.any? %>
-		<h2>You don't have any events on your calendar.</h2>
+	<% if @time_to_next_event >= 1440 %>
+		<h2>Relax! You have no more events today.</h2>
+	<% else %>
+		<h2>You have <%= time_ago_in_words(@time_to_next_event.minutes.from_now) %> until your next event.</h2>
 	<% end %>
+
+		<% if @tasks.any? %>
+
+			<h2>Here are some things to do before your next event:</h2>
+
+			<table>
+			  <tr>
+					<%= render 'tasks/headers' %>
+			  </tr>
+			  <% @tasks.each do |task| %>
+			    <tr>
+			      <%= render partial: "tasks/task_row", locals: {task: task} %>
+			      <%= render partial: "tasks/start_task", locals: {task: task} %>
+			    </tr>
+			  <% end %>
+			</table>
+
+		<% elsif current_user.tasks.any? %>
+
+			<h3>You don't have enough time to complete any tasks.  Perhaps later?</h3>
+
+		<% else %>
+
+			<h3>You don't have any tasks on your list!</h3>
+
+		<% end %>
+
 
 <% else %>
 
 	<h1>Status: Busy</h1>
 	<h2>It looks like you're busy with the following event:</h2>
 	<%= render "calendar_event" %>
+  <p>We'll let you get back to it!</p>
+  <p>Finished early?  <%= link_to "Click here", complete_calendar_path %> to end your event and find a task from your list!</p>
 
 <% end %>

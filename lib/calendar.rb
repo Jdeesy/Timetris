@@ -41,8 +41,7 @@ module CalendarAPI
                         }).data.items.select { |event| event.start['dateTime'] }
   end
 
-  def time_to_next_event
-    events = upcoming_events
+  def time_to_next_event(events)
     if events.any?
       if Time.at(events[0].start['dateTime']).utc > Time.now.utc
         return (Time.at(events[0].start['dateTime']) - Time.now.utc)/60
