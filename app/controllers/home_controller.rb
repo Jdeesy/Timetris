@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:welcome]
 
   def index
-    @time_to_next_event = current_user.time_to_next_event
     @upcoming_events = current_user.upcoming_events
+    @time_to_next_event = current_user.time_to_next_event(@upcoming_events)
     @next_event = @upcoming_events[0]
-    @tasks = current_user.possible_tasks.sort_by{ |task| task.priority }
+    @tasks = current_user.possible_tasks(@upcoming_events).sort_by{ |task| task.priority }
   end
 
   def pending

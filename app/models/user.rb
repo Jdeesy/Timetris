@@ -39,9 +39,9 @@ class User < ActiveRecord::Base
     self.tasks.reject{ |task| task.end_time }
   end
 
-  def possible_tasks
+  def possible_tasks(events)
     pending_tasks.select do |task|
-      task.time_box <= time_to_next_event
+      task.time_box <= time_to_next_event(events)
     end
   end
 
