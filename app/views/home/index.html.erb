@@ -24,7 +24,7 @@
 			  <% end %>
 			</table>
 
-		<% elsif current_user.tasks.any? %>
+		<% elsif current_user.pending_tasks.any? %>
 
 			<h3>You don't have enough time to complete any tasks.  Perhaps later?</h3>
 
