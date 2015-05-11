@@ -7,6 +7,9 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 # Rest client for oauth token refresh
 gem 'rest-client'
 
+# Get the time zone from the client browser
+gem 'browser-timezone-rails'
+
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -22,7 +25,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem "factory_girl_rails", "~> 4.0"
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
