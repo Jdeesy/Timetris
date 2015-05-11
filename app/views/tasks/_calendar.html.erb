@@ -1,5 +1,5 @@
 <%= form_for task do |f| -%>
   <% f.label :due_date %>
-  <%= f.datetime_select :due_date, ampm: true, :order => [:month, :day, :year, :hour, :minute] %>
+  <%= f.datetime_local_field :due_date, ampm: true, :order => [:month, :day, :year, :hour, :minute] %>
   <%= f.submit %>
 <% end %>
