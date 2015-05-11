@@ -46,23 +46,23 @@ class User < ActiveRecord::Base
   end
 
   def total_count
-    self.tasks.count
+    self.completed_tasks.count
   end
 
   def total_time_box
-    self.tasks.map(&:time_box).reduce(:+)
+    self.completed_tasks.map(&:time_box).reduce(:+)
   end
 
   def total_task_time
-    self.tasks.map(&:task_time).reduce(:+)
+    self.completed_tasks.map(&:task_time).reduce(:+)
   end
 
   def total_difference
-    self.tasks.map(&:difference).reduce(:+)
+    self.completed_tasks.map(&:difference).reduce(:+)
   end
 
   def average_priority
-    priorities = self.tasks.map(&:priority)
+    priorities = self.completed_tasks.map(&:priority)
     if total_count != 0
       return priorities.reduce(:+) / total_count
     end
