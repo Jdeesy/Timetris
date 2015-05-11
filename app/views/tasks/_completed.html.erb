@@ -1,7 +1,3 @@
 <h2>Finished Task: <%= @task.name %></h2>
-<h3>Started At: <%= Time.at(@task.start_time).in_time_zone.strftime("%A, %b %e at %l:%M %p") %></h3>
-<h3>Finish Time: <%= Time.at(@task.end_time).in_time_zone.strftime("%A, %b %e at %l:%M %p") %></h3>
-
-
-<%= @browser_timezone %>
-<%= Time.zone %>
+<h3>Start Time: <%= format_local_time(@task.start_time) %></h3>
+<h3>Finish Time: <%= format_local_time(@task.end_time) %></h3>
