@@ -1,0 +1,5 @@
+<%= form_for task do |f| -%>
+  <% f.label :due_date %>
+  <%= f.datetime_select :due_date -%>
+  <%= f.submit %>
+<% end %>
