@@ -35,15 +35,15 @@ Reports
         <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
         <td class="col-md-1"><%= task.time_box %> min</td>
         <% if task.due_date %>
-          <td class="col-md-1"><%= task.due_date %></td>
+          <td class="col-md-1"><%= format_local_time(task.due_date) %></td>
         <% else %>
           <td class="col-md-1">N/A</td>
         <% end %>
         <td class="col-md-1"><%= task.priority %></td>
         <td class="col-md-1"><%= task.task_time %> minutes</td>
         <td class="col-md-1"><%= task.time_box_difference %></td>
-        <td class="col-md-1"><%= task.start_time %></td>
-        <td class="col-md-1"><%= task.end_time %></td>
+        <td class="col-md-1"><%= format_local_time(task.start_time) %></td>
+        <td class="col-md-1"><%= format_local_time(task.end_time) %></td>
       </tr>
     <% end %>
   </table>
