@@ -32,7 +32,7 @@ $(document).ready(function(){
     e.preventDefault();
     var task = $(this).parent();
     var taskID = task.attr('id');
-    
+
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/tb_sub'
@@ -40,12 +40,12 @@ $(document).ready(function(){
       task.find('.time-box').text(r.time_box);
     });
   });
-    
+
   $(document).on("click", ".timebox-add", function(e) {
     e.preventDefault();
     var task = $(this).parent();
     var taskID = task.attr('id');
-    
+
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/tb_add'
@@ -58,7 +58,7 @@ $(document).ready(function(){
     e.preventDefault();
     var task = $(this).parent();
     var taskID = task.attr('id');
-    
+
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/pr_sub'
@@ -71,7 +71,7 @@ $(document).ready(function(){
     e.preventDefault();
     var task = $(this).parent();
     var taskID = task.attr('id');
-    
+
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/pr_add'
