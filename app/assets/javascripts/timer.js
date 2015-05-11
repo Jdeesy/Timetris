@@ -2,7 +2,7 @@ var task;
 
 $(document).ready(function(){
   var request = $.ajax({
-    url: "/tasks/49",
+    url: "/tasks/",
     method: "get",
   }).done(function(response){
     task = response;
@@ -18,7 +18,7 @@ function getEachSecond() {
 
  function calculateTime(response){
     var startTime = response.start_time;
-    var timeBox = response.time_box
+    var timeBox = response.time_box;
     var now = new Date();
     var start = new Date(startTime);
     var timeDifference = Math.floor(((now - start)/1000))

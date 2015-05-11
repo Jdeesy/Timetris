@@ -10,9 +10,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <div class="container">
+  <% if !@task || !@task.task_in_progress %>
     <%= render partial: "layouts/navbar" %>
+  <% end %>
     <%= render partial: "layouts/jumbotron" %>
   </div>
 
