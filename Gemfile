@@ -7,6 +7,9 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 # Rest client for oauth token refresh
 gem 'rest-client'
 
+# Get the time zone from the client browser
+gem 'browser-timezone-rails'
+
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
