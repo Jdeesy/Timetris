@@ -1,41 +1,27 @@
 $(document).ready(function(){
 	getEachMinute();
+	$(document).on("click", ".snooze", setSnoozeTime)
 });
 
-function getSuggestedEvent() {
-  $.ajax({
-    type: "GET",
-    url: "/"
-  }).done(parseEvent);
+function getSuggestedTask() {
+  $.get("/").done(parseTask);
 }
 
-function parseEvent(suggestedEvent) {
-	onScreenNotify(suggestedEvent);
-	if (suggestedEvent !== null && !document.hasFocus()) {
-		hudNotify(suggestedEvent);
+function parseTask(task) {
+	if (task !== null) {
+		onScreenNotify(task);
+		if (!document.hasFocus()) {
+			hudNotify(task);
+		}
 	}
 }
 
-function onScreenNotify(event) {
-	$('.notification').html(
-		"<div class='alert alert-warning' role='alert'><strong>You've got spare time! </strong>" + 
-		"Would you like to start <em>" + event.name + "</em>? (" + event.time_box + " minutes)" +
-		
-		"<div class='btn-group pull-right' role='group' aria-label='...'>" +
-  	"<button type='button' class='btn btn-default'>Start Task!</button>" +
-		"<div class='btn-group' role='group'>" + 
-		"<button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown' aria-expanded='true'>Snooze" +
-    "<span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>" +
-    "<li role='presentation'><a role='menuitem' tabindex='-1' href='#'>30 minutes</a></li>" +
-    "<li role='presentation'><a role='menuitem' tabindex='-1' href='#'>1 hour</a></li>" +
-    "<li role='presentation'><a role='menuitem' tabindex='-1' href='#'>3 hours</a></li>" +
-    "<li role='presentation'><a role='menuitem' tabindex='-1' href='#'>6 hours</a></li>" +
-    "<li role='presentation'><a role='menuitem' tabindex='-1' href='#'>12 hours</a></li>" +
-  	"</ul></div></div></div>"
-		);
+function onScreenNotify(task) {
+  $.get("/tasks/" + task.id + "/start").done(appendAlert);
+
 }
 
-function hudNotify(event) {
+function hudNotify(task) {
   if (!Notification) {
   	browserUnsupported();
   }
@@ -46,7 +32,7 @@ function hudNotify(event) {
 
   var notification = new Notification("You've got spare time!", {
     icon: 'http://i.imgur.com/GPPFEUP.jpg',
-    body: "Would you like to start '" + event.name + "'?",
+    body: "Would you like to start '" + task.name + "'?",
   });
 
   notification.onclick = function () {
@@ -59,11 +45,29 @@ function browserUnsupported() {
     return;
 }
 
-function getEachMinute() {
-     var d = new Date(),
-         h = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), (d.getMinutes() - (d.getMinutes() % 1)) + 1, 0, 0),
-         e = h - d;
-     window.setTimeout(getEachMinute, e);
+function appendAlert(htmlAlert) {
+	$('.notification').html(htmlAlert).toggle().slideDown();
+}
 
-     getSuggestedEvent();
+function setSnoozeTime(e) {
+	var snoozeMinutes = $(this).attr('minutes');
+	var snoozeDateTime = new Date(new Date().getTime() + (snoozeMinutes * 60000));
+	
+	$('.notification').slideUp();
+
+	$.ajax({
+    contentType: "application/json; charset=utf-8",
+		url: "/users/snooze",
+		method: "patch",
+		data: JSON.stringify({"user": {"snooze_until": snoozeDateTime}})
+	})
+}
+
+function getEachMinute() {
+  window.setTimeout(getEachMinute, 60000);
+  $.get("/users/alerts").done(function(r) {
+  	if (r.alerts === true) {
+  		getSuggestedTask();
+  	}
+  })
  }

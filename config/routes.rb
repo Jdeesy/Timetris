@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   post '/tasks/:id/pr_sub' => 'tasks#priority_subtract'
   post '/tasks/:id/pr_add' => 'tasks#priority_add'
 
+  get '/tasks/:id/start' => 'tasks#start'
+  get '/users/alerts' => 'users#alerts'
+  patch '/users/snooze' => 'users#snooze'
+
   resources :sessions, only: [:create, :destroy]
   resources :tasks, only: [:create, :show, :edit, :update, :destroy]
 
