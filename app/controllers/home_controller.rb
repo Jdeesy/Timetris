@@ -6,6 +6,9 @@ class HomeController < ApplicationController
     @time_to_next_event = current_user.time_to_next_event(@upcoming_events)
     @next_event = @upcoming_events[0]
     @tasks = current_user.possible_tasks(@upcoming_events).sort_by{ |task| task.priority }
+    if request.xhr?
+      render json: @tasks.first
+    end
   end
 
   def pending

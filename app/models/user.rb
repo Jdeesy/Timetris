@@ -73,4 +73,8 @@ class User < ActiveRecord::Base
       return total_difference / total_count
     end
   end
+
+  def show_alerts?
+    return Time.at(User.first.snooze_until).utc < Time.now.utc
+  end
 end

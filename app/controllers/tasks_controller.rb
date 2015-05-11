@@ -22,9 +22,13 @@ class TasksController < ApplicationController
 
   def start
     task = Task.find_by(id: params[:id])
-    calendar_event = current_user.begin_task(task)
-    task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start['dateTime']))
-    redirect_to task
+    if request.xhr?
+      render partial: "tasks/alert", locals: {task: task}
+    else
+      calendar_event = current_user.begin_task(task)
+      task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start['dateTime']))
+      redirect_to task
+    end
   end
 
   def complete
