@@ -1,4 +1,4 @@
 <h2>Current Task: <%= @task.name %></h2>
 <h3>Started At: <%= @task.start_time %></h3>
 <h3>Target Finish Time: <%= @task.target_finish_time %></h3>
-<%= button_to "I'm Finished", complete_task_path(@task), method: :patch %>
+<%= button_to "I'm Finished", complete_task_path(@task), method: :patch, class: "btn btn-default" %>
