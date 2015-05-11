@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   skip_before_action :require_login, only: [:welcome]
+  before_action :get_upcoming_events, except: [:welcome]
 
   def index
-    @upcoming_events = current_user.upcoming_events
     @time_to_next_event = current_user.time_to_next_event(@upcoming_events)
     @next_event = @upcoming_events[0]
     @tasks = current_user.possible_tasks(@upcoming_events).sort_by{ |task| task.priority }
@@ -40,4 +40,12 @@ class HomeController < ApplicationController
     current_user.complete_calendar_event(@next_event)
     redirect_to root_path
   end
+
+  private
+
+  def get_upcoming_events
+    @upcoming_events = current_user.upcoming_events
+    @calendar_times = last_half_hour
+  end
+
 end

@@ -12,11 +12,24 @@
 <body>
 
   <div class="container">
-  <% if !@task || !@task.task_in_progress %>
-    <%= render partial: "layouts/navbar" %>
-  <% end %>
+  
+    <% if !@task || !@task.task_in_progress %>
+      <%= render partial: "layouts/navbar" %>
+    <% end %>
+
     <div class="notification"></div>
-    <%= render partial: "layouts/jumbotron" %>
+
+    <% if current_user %>
+    <%= render partial: "layouts/calendar_sidebar" %>
+    <div class="jumbotron col-md-8 col-xs-12">
+      <%= yield %>
+    </div>
+    <% else %>
+    <div class="jumbotron col-md-12">
+      <%= yield %>
+    </div>
+    <% end %>    
+    
   </div>
 
 </body>
