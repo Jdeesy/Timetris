@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
   end
 
   def pending_tasks
-    self.tasks.reject{ |task| task.end_time }
+    tasks = self.tasks.reject{ |task| task.end_time }
+    due_tasks = self.tasks.sort_by{ |task| [task.due_date if task.due_date, task.priority]}
   end
 
   def possible_tasks(events)
@@ -120,5 +121,11 @@ class User < ActiveRecord::Base
 
   def calculate_gap_time(array_of_gap_times)
     return [array_of_gap_times[0], (array_of_gap_times[1] - array_of_gap_times[0])]
+  end
+
+  def predict_tasks(gaps)
+    gaps.each do |gap|
+
+    end
   end
 end
