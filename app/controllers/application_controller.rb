@@ -20,11 +20,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_completed_task
-    tasks = current_user.pending_tasks
-    if current_user && tasks.any?
-      # task = current_user.tasks.select {|task| task.start_time && !task.end_time}[0]
-      tasks.each do |task|
-        redirect_to task if task.task_in_progress
+    if current_user
+      tasks = current_user.pending_tasks
+      if tasks.any?
+        tasks.each do |task|
+          redirect_to task if task.task_in_progress
+        end
       end
     end
   end
