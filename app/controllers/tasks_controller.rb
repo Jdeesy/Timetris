@@ -56,6 +56,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     @task.update(task_params)
+    if @task.calendar_event_created?
+      calendar_event = current_user.update_event_description(@task)
+      calendar_event.description = @task.description
+    end
     if request.xhr?
       render partial: "list_item_header", locals: {task: @task}
     else

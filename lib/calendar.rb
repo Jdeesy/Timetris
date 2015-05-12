@@ -56,10 +56,10 @@ module CalendarAPI
   def begin_task(task)
     start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_time = (Time.now.utc + (task.time_box * 60)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    summary = task.name
     return events_insert({'start'   => {'dateTime' => start_time},
                            'end'     => {'dateTime' => end_time},
-                           'summary' => summary
+                           'summary' => task.name,
+                           'description' => task.description
                           }).data
   end
 
@@ -77,5 +77,12 @@ module CalendarAPI
                           'eventId'    => calendar_event.id},
                          {'end'        => {'dateTime' => end_time}}
                          ).data
+  end
+
+  def update_event_description(task)
+    return events_patch({'calendarId' => 'primary',
+                        'eventId'     => task.event_id},
+                        {'description'  => task.description}
+                        ).data
   end
 end
