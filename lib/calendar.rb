@@ -43,8 +43,8 @@ module CalendarAPI
 
   def time_to_next_event(events)
     if events.any?
-      if Time.at(events[0].start['dateTime']).utc > Time.now.utc
-        return (Time.at(events[0].start['dateTime']) - Time.now.utc)/60
+      if Time.at(events[0].start.dateTime).utc > Time.now.utc
+        return (Time.at(events[0].start.dateTime) - Time.now.utc)/60
       else
         return 0
       end
