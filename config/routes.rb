@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get '/users/alerts' => 'users#alerts'
   patch '/users/snooze' => 'users#snooze'
 
+  get '/settings' => 'users#edit', as: 'edit_user'
+  patch '/settings' => 'users#update', as: 'user'
+
   resources :sessions, only: [:create, :destroy]
   resources :tasks, only: [:create, :show, :edit, :update, :destroy]
 
