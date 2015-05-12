@@ -17,5 +17,6 @@ FactoryGirl.define do
     end_time    Time.now
     event_id    "google event id"
     priority    2
+    description "task description"
   end
 end
