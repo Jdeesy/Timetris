@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
 
   def pending_tasks
     tasks = self.tasks.reject{ |task| task.end_time }
-    due_tasks = self.tasks.select{ |task| task.due_date }.sort_by{ |task| [task.due_date, task.priority] }
-    no_due_task = self.tasks.reject{ |task| task.due_date }.sort_by(&:priority)
+    due_tasks = tasks.select{ |task| task.due_date }.sort_by{ |task| [task.due_date, task.priority] }
+    no_due_task = tasks.reject{ |task| task.due_date }.sort_by(&:priority)
     pending = due_tasks + no_due_task
     return pending
   end

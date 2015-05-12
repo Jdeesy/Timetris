@@ -9,6 +9,8 @@ class HomeController < ApplicationController
     if request.xhr?
       render json: @tasks.first
     end
+
+    @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events))) if current_user
   end
 
   def pending
