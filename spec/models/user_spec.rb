@@ -98,4 +98,35 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "testing the sorting of events" do
+    user = FactoryGirl.create(:user)
+    let!( :event_1 ){OpenStruct.new('start' => OpenStruct.new("dateTime" => DateTime.iso8601('2015-05-12T11:30:00-05:00')), 'end' => OpenStruct.new("dateTime" => DateTime.iso8601('2015-05-12T12:00:00-05:00')))}
+    let!( :event_2 ){OpenStruct.new('start' => OpenStruct.new("dateTime" => DateTime.iso8601("2015-05-12T13:30:00-05:00")), 'end' => OpenStruct.new("dateTime" => DateTime.iso8601("2015-05-12T15:30:00-05:00")))}
+    let!( :events ){ [event_1, event_2] }
+
+    xit 'should return the array count of 2' do
+      expect(events.count).to eq(2)
+    end
+
+    xit 'should return the array count of 4' do
+      expect(user.sort_upcoming_events(events).count).to eq(4)
+    end
+
+    xit 'should return start for first event' do
+      expect(user.sort_upcoming_events(events)[0][0]).to eq(:start)
+    end
+
+    xit 'should return time of the first event' do
+      expect(user.sort_upcoming_events(events)[0][2]).to eq(DateTime.iso8601("2015-05-12T11:30:00-05:00").to_i)
+    end
+
+    xit 'should return end for last event' do
+      expect(user.sort_upcoming_events(events)[3][0]).to eq(:end)
+    end
+
+    xit 'should return time of the last event' do
+      expect(user.sort_upcoming_events(events)[3][2]).to eq(DateTime.iso8601("2015-05-12T15:30:00-05:00").to_i)
+    end
+  end
+
 end
