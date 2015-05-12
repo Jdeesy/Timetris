@@ -46,4 +46,8 @@ class Task < ActiveRecord::Base
   def priority_add
     self.update(priority: self.priority += 1)
   end
+
+  def calendar_event_created?
+    self.task_in_progress || self.end_time
+  end
 end
