@@ -3,7 +3,7 @@ var task;
 $(document).ready(function(){
   if ($('.task-in-progress').length > 0) {
     var request = $.ajax({
-      url: "/tasks/",
+      url: window.location.pathname,
       method: "get",
     }).done(function(response){
       task = response;

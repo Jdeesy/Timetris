@@ -28,7 +28,7 @@ class Task < ActiveRecord::Base
   end
 
   def task_in_progress
-    self.start_time && self.end_time == nil
+    self.start_time && !self.end_time
   end
 
   def time_box_subtract
