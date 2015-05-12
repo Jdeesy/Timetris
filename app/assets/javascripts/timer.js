@@ -1,13 +1,15 @@
 var task;
 
 $(document).ready(function(){
-  var request = $.ajax({
-    url: "/tasks/",
-    method: "get",
-  }).done(function(response){
-    task = response;
-    getEachSecond();
-  })
+  if ($('.task-in-progress').length > 0) {
+    var request = $.ajax({
+      url: "/tasks/",
+      method: "get",
+    }).done(function(response){
+      task = response;
+      getEachSecond();
+    })
+  }
 })
 
 function getEachSecond() {
