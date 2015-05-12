@@ -90,7 +90,13 @@ class User < ActiveRecord::Base
   end
 
   def find_the_gaps(sorted_events) 
+    gaps = []
+    gap = []
     counter = 0
+
+    if sorted_events[0][2] > Time.now.to_i
+      gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
+    end
 
     sorted_events.each do |event|
       case event[0]
@@ -99,8 +105,22 @@ class User < ActiveRecord::Base
       when :end
         counter -= 1
       end
-      
+
+      if counter == 0
+        gap << event[2]
+      elsif gap.any?
+        gap << event[2]
+        gaps << calculate_gap_time(gap)
+        gap = []
+      end
     end
+
+    return gaps
   end
+
+  def calculate_gap_time(array_of_gap_times)
+    return [array_of_gap_times[0], (array_of_gap_times[1] - array_of_gap_times[0])]
+  end
+
 
 end
