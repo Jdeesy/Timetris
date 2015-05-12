@@ -36,7 +36,11 @@ class User < ActiveRecord::Base
   end
 
   def pending_tasks
-    self.tasks.reject{ |task| task.end_time }
+    tasks = self.tasks.reject{ |task| task.end_time }
+    due_tasks = self.tasks.select{ |task| task.due_date }.sort_by{ |task| [task.due_date, task.priority] }
+    no_due_task = self.tasks.reject{ |task| task.due_date }.sort_by(&:priority)
+    pending = due_tasks + no_due_task
+    return pending
   end
 
   def possible_tasks(events)
@@ -88,5 +92,66 @@ class User < ActiveRecord::Base
     else
       self.snooze_until = nil
     end
+  end
+
+
+  def sort_upcoming_events(events)
+    events_array = []
+    events.map do |event|
+      events_array << [:start, event, event.start["dateTime"].to_i]
+      events_array << [:end, event, event.end["dateTime"].to_i]  
+    end
+
+    return events_array.sort_by{ |event| event[2] }
+  end
+
+  def find_the_gaps(sorted_events) 
+    gaps = []
+    gap = []
+    counter = 0
+
+    if sorted_events[0][2] > Time.now.to_i
+      gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
+    end
+
+    sorted_events.each do |event|
+      case event[0]
+      when :start
+        counter += 1
+      when :end
+        counter -= 1
+      end
+
+      if counter == 0
+        gap << event[2]
+      elsif gap.any?
+        gap << event[2]
+        gaps << calculate_gap_time(gap)
+        gap = []
+      end
+    end
+
+    return gaps
+  end
+
+  def calculate_gap_time(array_of_gap_times)
+    return [array_of_gap_times[0], (array_of_gap_times[1] - array_of_gap_times[0])]
+  end
+
+  def predict_tasks(gaps)
+    all_possible_tasks = []
+    tasks = self.pending_tasks
+
+    gaps.each do |gap|
+      tasks.each do |task|
+        if task.time_box <= (gap[1]/60)
+          all_possible_tasks << [gap[0], task]
+          tasks.delete(task)
+          break
+        end
+      end
+    end
+
+    return all_possible_tasks
   end
 end
