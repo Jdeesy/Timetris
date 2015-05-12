@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
   end
 
   def show_alerts?
-    return Time.at(self.snooze_until).utc < Time.now.utc
+    if self.snooze_until
+      return Time.at(self.snooze_until).utc < Time.now.utc
+    else
+      return false
+    end
   end
 end
