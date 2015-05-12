@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  skip_before_action :require_completed_task, only: [:show, :complete]
+  skip_before_action :require_completed_task, only: [:show, :complete, :update]
 
   def create
     task = Task.new(task_params)
@@ -56,6 +56,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find_by(id: params[:id])
     @task.update(task_params)
+    if @task.calendar_event_created?
+      calendar_event = current_user.update_event_description(@task)
+      calendar_event.description = @task.description
+    end
     if request.xhr?
       render partial: "list_item_header", locals: {task: @task}
     else
@@ -98,7 +102,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :due_date)
+    params.require(:task).permit(:name, :due_date, :description)
   end
 
 end

@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
     Time.at(self.start_time).utc + (self.time_box * 60)
   end
 
-  def task_time
+  def duration
     if start_time && end_time
       return ((end_time - start_time)/60).to_i
     else
@@ -15,20 +15,20 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def difference
-    time_box - task_time
+  def time_box_difference
+    time_box - duration
   end
 
-  def time_box_difference
-    if difference >= 0
-      return "#{difference} minutes under"
+  def time_box_difference_in_words
+    if time_box_difference >= 0
+      return "#{time_box_difference} minutes under"
     else
-      return "#{0-difference} minutes over"
+      return "#{0 - time_box_difference} minutes over"
     end
   end
 
   def task_in_progress
-    self.start_time && self.end_time == nil
+    self.start_time && !self.end_time
   end
 
   def time_box_subtract
@@ -45,5 +45,9 @@ class Task < ActiveRecord::Base
 
   def priority_add
     self.update(priority: self.priority += 1)
+  end
+
+  def calendar_event_created?
+    self.task_in_progress || self.end_time
   end
 end

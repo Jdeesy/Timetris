@@ -1,0 +1,13 @@
+<h1>Settings</h1>
+<%= form_for @user do |f| %>
+
+	<ul class="list-group">
+		
+		<p class="list-group-item-heading">Alerts:
+		<%= f.check_box :show_alerts %></p>
+
+	</ul>
+
+	<%= f.submit "Save Settings", class: "btn btn-default" %>
+
+<% end %>

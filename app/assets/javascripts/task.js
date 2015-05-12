@@ -80,4 +80,20 @@ $(document).ready(function(){
     });
   });
 
+  $(document).on("submit", ".edit_task", function(e){
+    e.preventDefault();
+    var form = $(this);
+    var url = form.attr('action');
+    var data = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data
+    }).success(function(r) {
+      var save = $("<div class='alert alert-success' role='alert'>Changes saved!</div>")
+        form.append(save);
+        save.fadeOut(800);
+    });
+  });
+
 });

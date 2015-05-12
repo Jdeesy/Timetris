@@ -43,8 +43,8 @@ module CalendarAPI
 
   def time_to_next_event(events)
     if events.any?
-      if Time.at(events[0].start['dateTime']).utc > Time.now.utc
-        return (Time.at(events[0].start['dateTime']) - Time.now.utc)/60
+      if Time.at(events[0].start.dateTime).utc > Time.now.utc
+        return (Time.at(events[0].start.dateTime) - Time.now.utc)/60
       else
         return 0
       end
@@ -56,10 +56,10 @@ module CalendarAPI
   def begin_task(task)
     start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_time = (Time.now.utc + (task.time_box * 60)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    summary = task.name
     return events_insert({'start'   => {'dateTime' => start_time},
                            'end'     => {'dateTime' => end_time},
-                           'summary' => summary
+                           'summary' => task.name,
+                           'description' => task.description
                           }).data
   end
 
@@ -77,5 +77,12 @@ module CalendarAPI
                           'eventId'    => calendar_event.id},
                          {'end'        => {'dateTime' => end_time}}
                          ).data
+  end
+
+  def update_event_description(task)
+    return events_patch({'calendarId' => 'primary',
+                        'eventId'     => task.event_id},
+                        {'description'  => task.description}
+                        ).data
   end
 end

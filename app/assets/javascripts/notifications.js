@@ -31,7 +31,7 @@ function hudNotify(task) {
   }
 
   var notification = new Notification("You've got spare time!", {
-    icon: 'http://i.imgur.com/GPPFEUP.jpg',
+    icon: 'https://raw.githubusercontent.com/chi-rock-doves-2015/Timetris/master/app/assets/images/notification-logo.png',
     body: "Would you like to start '" + task.name + "'?",
   });
 

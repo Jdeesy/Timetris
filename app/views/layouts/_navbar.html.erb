@@ -13,11 +13,10 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" role="tablist">
-        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Present", root_path %></li>
         <% if current_user %>
-        <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Pending", pending_path %></li>
-        <li class="<%= 'active' if current_page?(completed_path) %>"><%= link_to "Completed", completed_path %></li>
-        <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Reports", reports_path %></li>
+        <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Future", pending_path %></li>
+        <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Past", reports_path %></li>
         <% end %>
       </ul>
 
@@ -28,7 +27,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings</a></li>
+              <li><a href="<%= edit_user_path %>">Settings</a></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
             </ul>
           </li>

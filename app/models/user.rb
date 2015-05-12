@@ -58,11 +58,11 @@ class User < ActiveRecord::Base
   end
 
   def total_task_time
-    self.completed_tasks.map(&:task_time).reduce(:+)
+    self.completed_tasks.map(&:duration).reduce(:+)
   end
 
   def total_difference
-    self.completed_tasks.map(&:difference).reduce(:+)
+    self.completed_tasks.map(&:time_box_difference).reduce(:+)
   end
 
   def average_priority
@@ -78,8 +78,20 @@ class User < ActiveRecord::Base
     end
   end
 
-  def show_alerts?
-    return Time.at(User.first.snooze_until).utc < Time.now.utc
+  def show_alerts
+    if self.snooze_until
+      return Time.at(self.snooze_until).utc < Time.now.utc
+    else
+      return false
+    end
+  end
+
+  def show_alerts=(enabled)
+    if enabled == "1" ||  enabled == true
+      self.snooze_until ||= Time.new(1776, 07, 04, 0, 0, 0)
+    else
+      self.snooze_until = nil
+    end
   end
 
 
