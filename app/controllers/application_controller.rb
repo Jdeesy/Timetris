@@ -26,8 +26,6 @@ class ApplicationController < ActionController::Base
   #   return calendar
   # end
 
-
-
   private
 
   def require_login

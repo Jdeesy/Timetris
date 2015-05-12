@@ -135,6 +135,7 @@ class User < ActiveRecord::Base
         if task.time_box <= (gap[1]/60)
           all_possible_tasks << [gap[0], task]
           tasks.delete(task)
+          break
         end
       end
     end
