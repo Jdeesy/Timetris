@@ -127,8 +127,18 @@ class User < ActiveRecord::Base
   end
 
   def predict_tasks(gaps)
-    gaps.each do |gap|
+    all_possible_tasks = []
+    tasks = self.pending_tasks
 
+    gaps.each do |gap|
+      tasks.each do |task|
+        if task.time_box <= (gap[1]/60)
+          all_possible_tasks << [gap[0], task]
+          tasks.delete(task)
+        end
+      end
     end
+
+    return all_possible_tasks
   end
 end
