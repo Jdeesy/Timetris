@@ -1,0 +1,17 @@
+.task {
+	.task-header {
+		.name {
+			display: inline-block;
+		}
+	}	
+	.list-group-item-heading {
+		display: inline-block;
+	}
+	.buttons {
+		text-align: right;
+		display: inline-block;
+	}
+	form {
+		display: inline-block;
+	}
+}

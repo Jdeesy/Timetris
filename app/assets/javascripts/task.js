@@ -1,22 +1,22 @@
 $(document).ready(function(){
 
-  $(document).on("click", ".task-edit", function(e) {
+  $(document).on("click", ".task .task-edit", function(e) {
     e.preventDefault();
-    var taskForm = $(this).parent().parent();
-    var taskID = taskForm.parent().attr('id');
+    var nameHeader = $(this).parent()
+    var taskID = nameHeader.parent().parent().parent().attr('id');
 
     $.ajax({
       type: "GET",
       url: "tasks/" + taskID + "/edit"
     }).done(function(r) {
-      taskForm.replaceWith(r);
+      nameHeader.replaceWith(r);
     });
   });
 
-  $(document).on("submit", ".task .task-form form", function(e) {
+  $(document).on("submit", ".task .task-header form", function(e) {
     e.preventDefault();
     var taskForm = $(this).parent()
-    var taskID = taskForm.parent().attr('id');
+    var taskID = taskForm.parent().parent().parent().attr('id');
     var formData = $(this).serialize();
 
     $.ajax({
@@ -28,9 +28,9 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on("click", ".timebox-subtract", function(e) {
+  $(document).on("click", ".task .timebox-subtract", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
@@ -41,9 +41,9 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on("click", ".timebox-add", function(e) {
+  $(document).on("click", ".task .timebox-add", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
@@ -54,9 +54,9 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on("click", ".priority-subtract", function(e) {
+  $(document).on("click", ".task .priority-subtract", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
@@ -67,9 +67,9 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on("click", ".priority-add", function(e) {
+  $(document).on("click", ".task .priority-add", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
