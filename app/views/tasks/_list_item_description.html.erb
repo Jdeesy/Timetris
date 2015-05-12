@@ -1,14 +1,2 @@
-<h2>Note:</h2>
-<% if @task.description %>
-    <p><%= @task.description %></p>
-    <%= form_for @task do |f| %>
-    <%= f.text_area :description, cols: 50, rows: "4" %><br>
-    <%= f.submit "Update Note" %>
-  <% end %>
-<% else %>
-  <%= form_for @task do |f| %>
-    <%= f.text_area :description, cols: 50, rows: "4" %><br>
-    <%= f.submit "Add Note" %>
-  <% end %>
-
-<% end %>
+<h2>Notes:</h2>
+<%= render "tasks/note_form" %>

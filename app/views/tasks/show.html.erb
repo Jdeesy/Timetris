@@ -1,9 +1,8 @@
 <% if @task.start_time == nil %>
 	<%= render "pending" %>
-  <%= render partial: "tasks/list_item_description", locals: {task: @task} %>
 <% elsif @task.end_time %>
   <%= render "completed" %>
-<%# render partial: "tasks/list_item_description", locals: {task: @task} %>
 <% else %>
   <%= render "in_progress" %>
 <% end %>
+<%= render "tasks/list_item_description" %>
