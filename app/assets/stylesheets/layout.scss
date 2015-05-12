@@ -3,6 +3,13 @@ body {
   padding-bottom: 20px;
 }
 
+.logo-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -999;
+}
+
 .calendar-event {
 	max-width: 300px;
 	margin-top: 20px;

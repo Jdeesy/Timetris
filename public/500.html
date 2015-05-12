@@ -51,16 +51,24 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  .logo-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -999;
+  }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/500.html -->
+  <img class="logo-bg" src="logo.png">
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
+      <h1>We're sorry, but has gone horribly, horribly wrong.</h1>
+      <p>We promise we're working on fixing it though!</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>Maybe try returning to <a href="https://timetris.herokuapp.com/">Timetris</a>?</p>
   </div>
 </body>
-</html>
