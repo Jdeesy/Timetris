@@ -1,13 +1,15 @@
-<h2>Current Task: <%= @task.name %></h2>
-<table class="timer">
-  <tr>
-    <td class="hours"></td>
-    <td>:</td>
-    <td class="minutes"></td>
-    <td>:</td>
-    <td class="seconds"></td>
-  </tr>
-</table>
-<h3>Start Time: <%= format_local_time(@task.start_time) %></h3>
-<h3>Target Finish Time: <%= format_local_time(@task.target_finish_time) %></h3>
-<%= button_to "I'm Finished", complete_task_path(@task), method: :patch, class: "btn btn-default" %>
+<div class="task-in-progress">
+	<h2>Current Task: <%= @task.name %></h2>
+	<table class="timer">
+	  <tr>
+	    <td class="hours"></td>
+	    <td>:</td>
+	    <td class="minutes"></td>
+	    <td>:</td>
+	    <td class="seconds"></td>
+	  </tr>
+	</table>
+	<h3>Start Time: <%= format_local_time(@task.start_time) %></h3>
+	<h3>Target Finish Time: <%= format_local_time(@task.target_finish_time) %></h3>
+	<%= button_to "I'm Finished", complete_task_path(@task), method: :patch, class: "btn btn-default" %>
+</div>
