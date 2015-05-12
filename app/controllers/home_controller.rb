@@ -10,7 +10,9 @@ class HomeController < ApplicationController
       render json: @tasks.first
     end
 
-    @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events))) if current_user
+    if @upcoming_events.any? && @tasks.any?
+      @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
+    end
   end
 
   def pending
