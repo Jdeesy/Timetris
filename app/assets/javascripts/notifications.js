@@ -1,3 +1,5 @@
+var lastTask = {id: 0};
+
 $(document).ready(function(){
 	getEachMinute();
 	$(document).on("click", ".snooze", setSnoozeTime)
@@ -9,10 +11,13 @@ function getSuggestedTask() {
 
 function parseTask(task) {
 	if (task !== null) {
-		onScreenNotify(task);
-		if (!document.hasFocus()) {
-			hudNotify(task);
-		}
+    if (lastTask.id !== task.id) {
+      lastTask = task;
+      onScreenNotify(task);
+      if (!document.hasFocus()) {
+        hudNotify(task);
+      }
+    }
 	}
 }
 
@@ -38,6 +43,8 @@ function hudNotify(task) {
   notification.onclick = function () {
     window.focus()
   }
+
+  window.setTimeout(notification.close(), 1000);
 }
 
 function browserUnsupported() {
