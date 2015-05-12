@@ -121,6 +121,4 @@ class User < ActiveRecord::Base
   def calculate_gap_time(array_of_gap_times)
     return [array_of_gap_times[0], (array_of_gap_times[1] - array_of_gap_times[0])]
   end
-
-
 end

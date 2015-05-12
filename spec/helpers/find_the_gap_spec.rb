@@ -40,4 +40,16 @@ RSpec.describe 'Helper' do
       expect(user.sort_upcoming_events(events)[3][2]).to eq(DateTime.iso8601("2015-05-12T15:30:00-05:00").to_i)
     end
   end
+
+  describe "Calculate Gap Time" do
+    it 'should return time between events' do
+      expect(user.calculate_gap_time([DateTime.iso8601("2015-05-12T12:00:00-05:00").to_i,DateTime.iso8601("2015-05-12T13:30:00-05:00").to_i])).to eq([1431450000, 5400])
+    end
+  end
+
+  describe "Find the gaps" do
+    it 'should return an array with gap start time and duration' do
+      expect(user.find_the_gaps(user.sort_upcoming_events(events))).to eq([[1431450000, 5400]])
+    end
+  end
 end
