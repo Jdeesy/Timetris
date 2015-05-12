@@ -41,11 +41,4 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def get_upcoming_events
-    @upcoming_events = current_user.upcoming_events
-    @calendar_times = last_half_hour
-  end
-
 end

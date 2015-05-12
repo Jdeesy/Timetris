@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-
   skip_before_action :require_completed_task, only: [:show, :complete]
+  before_action :get_upcoming_events, only: [:show]
 
   def create
     task = Task.new(task_params)
