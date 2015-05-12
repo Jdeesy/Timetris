@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-05-10T17:10:06-05:00">2015-05-10T17:10:06-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-05-12T11:52:16-05:00">2015-05-12T11:52:16-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">78.49%</span></span>
+    (<span class="covered_percent"><span class="red">43.14%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="red">
-         0.91
+       <span class="green">
+         1.4
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>3</b> files in total.
-    <b>93</b> relevant lines. 
-    <span class="green"><b>73</b> lines covered</span> and
-    <span class="red"><b>20</b> lines missed </span>
+    <b>1</b> files in total.
+    <b>51</b> relevant lines. 
+    <span class="green"><b>22</b> lines covered</span> and
+    <span class="red"><b>29</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,33 +51,13 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#ab3aff7bee1d708bc201ecbf7d11bf9331851b0e" class="src_link" title="app/models/task.rb">app/models/task.rb</a></td>
-        <td class="green strong">92.86 %</td>
-        <td>27</td>
-        <td>14</td>
-        <td>13</td>
-        <td>1</td>
-        <td>1.6</td>
-      </tr>
-      
-      <tr>
-        <td class="strong"><a href="#e7f33922aed5d272c5aed7366cadcaf790c67712" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-        <td class="red strong">55.81 %</td>
-        <td>75</td>
-        <td>43</td>
-        <td>24</td>
-        <td>19</td>
-        <td>0.6</td>
-      </tr>
-      
-      <tr>
-        <td class="strong"><a href="#5bfc5cfc80c89205ba352184df0d39b615506e61" class="src_link" title="spec/models/user_spec.rb">spec/models/user_spec.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>70</td>
-        <td>36</td>
-        <td>36</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td class="strong"><a href="#c06edd6a8c986aa82e5b9b8808ab51fb46a6b726" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
+        <td class="red strong">43.14 %</td>
+        <td>97</td>
+        <td>51</td>
+        <td>22</td>
+        <td>29</td>
+        <td>1.4</td>
       </tr>
       
     </tbody>
@@ -96,194 +76,14 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="ab3aff7bee1d708bc201ecbf7d11bf9331851b0e">
-  <div class="header">
-    <h3>app/models/task.rb</h3>
-    <h4><span class="green">92.86 %</span> covered</h4>
-    <div>
-      <b>14</b> relevant lines. 
-      <span class="green"><b>13</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
-    </div>
-  </div>
-  
-  <pre>
-    <ol>
-      
-        <li class="covered" data-hits="1" data-linenumber="1">
-          <span class="hits">1</span>
-          
-          <code class="ruby">class Task &lt; ActiveRecord::Base</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  belongs_to :creator, class_name: &quot;User&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="3">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def target_finish_time</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    Time.at(self.start_time).utc + (self.time_box * 60)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="7">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def task_time</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="9">
-          <span class="hits">7</span>
-          
-          <code class="ruby">    return ((end_time - start_time)/60).to_i</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="10">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="11">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def difference</code>
-        </li>
-      
-        <li class="covered" data-hits="5" data-linenumber="13">
-          <span class="hits">5</span>
-          
-          <code class="ruby">    time_box - task_time</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def time_box_difference</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    if difference &gt;= 0</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="18">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      return &quot;#{difference} minutes under&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="20">
-          
-          
-          <code class="ruby">      return &quot;#{0-difference} minutes over&quot;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="21">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def task_in_progress</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    self.start_time &amp;&amp; self.end_time == nil</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
-          <code class="ruby">end</code>
-        </li>
-      
-    </ol>
-  </pre>
-</div>
-      
-        <div class="source_table" id="e7f33922aed5d272c5aed7366cadcaf790c67712">
+        <div class="source_table" id="c06edd6a8c986aa82e5b9b8808ab51fb46a6b726">
   <div class="header">
     <h3>app/models/user.rb</h3>
-    <h4><span class="red">55.81 %</span> covered</h4>
+    <h4><span class="red">43.14 %</span> covered</h4>
     <div>
-      <b>43</b> relevant lines. 
-      <span class="green"><b>24</b> lines covered</span> and
-      <span class="red"><b>19</b> lines missed.</span>
+      <b>51</b> relevant lines. 
+      <span class="green"><b>22</b> lines covered</span> and
+      <span class="red"><b>29</b> lines missed.</span>
     </div>
   </div>
   
@@ -539,7 +339,7 @@
         <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">  def possible_tasks</code>
+          <code class="ruby">  def possible_tasks(events)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="43">
@@ -551,7 +351,7 @@
         <li class="missed" data-hits="0" data-linenumber="44">
           
           
-          <code class="ruby">      task.time_box &lt;= time_to_next_event</code>
+          <code class="ruby">      task.time_box &lt;= time_to_next_event(events)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
@@ -578,10 +378,10 @@
           <code class="ruby">  def total_count</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="49">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="49">
           
-          <code class="ruby">    self.tasks.count</code>
+          
+          <code class="ruby">    self.completed_tasks.count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="50">
@@ -602,10 +402,10 @@
           <code class="ruby">  def total_time_box</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="53">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="53">
           
-          <code class="ruby">    self.tasks.map(&amp;:time_box).reduce(:+)</code>
+          
+          <code class="ruby">    self.completed_tasks.map(&amp;:time_box).reduce(:+)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
@@ -626,10 +426,10 @@
           <code class="ruby">  def total_task_time</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="57">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="57">
           
-          <code class="ruby">    self.tasks.map(&amp;:task_time).reduce(:+)</code>
+          
+          <code class="ruby">    self.completed_tasks.map(&amp;:task_time).reduce(:+)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
@@ -650,10 +450,10 @@
           <code class="ruby">  def total_difference</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="61">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="61">
           
-          <code class="ruby">    self.tasks.map(&amp;:difference).reduce(:+)</code>
+          
+          <code class="ruby">    self.completed_tasks.map(&amp;:difference).reduce(:+)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="62">
@@ -674,490 +474,22 @@
           <code class="ruby">  def average_priority</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="65">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="65">
           
-          <code class="ruby">    priorities = self.tasks.map(&amp;:priority)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="66">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    size = priorities.size</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="67">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    return priorities.reduce(:+)/size</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="68">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="69">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="70">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def average_difference</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="71">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    differences = self.tasks.map(&amp;:difference)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="72">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    size = differences.size</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="73">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    return differences.reduce(:+)/size</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="75">
-          
-          
-          <code class="ruby">end</code>
-        </li>
-      
-    </ol>
-  </pre>
-</div>
-      
-        <div class="source_table" id="5bfc5cfc80c89205ba352184df0d39b615506e61">
-  <div class="header">
-    <h3>spec/models/user_spec.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
-    <div>
-      <b>36</b> relevant lines. 
-      <span class="green"><b>36</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
-    </div>
-  </div>
-  
-  <pre>
-    <ol>
-      
-        <li class="covered" data-hits="1" data-linenumber="1">
-          <span class="hits">1</span>
-          
-          <code class="ruby">require &#39;rails_helper&#39;</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="2">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
-          
-          <code class="ruby">RSpec.describe User, type: :model do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  user = FactoryGirl.create(:user)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  task = FactoryGirl.create(:task, creator: user)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="7">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  describe &quot;User Model Methods&quot; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="8">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user id&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.id).to be_a(Fixnum)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="10">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="11">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="12">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user provider&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="13">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.provider).to eq(&quot;google&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="14">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="15">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="16">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user uid&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="17">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.uid).to eq(&quot;universal id&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user email&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.email).to eq(&quot;john.doe@gmail.com&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="22">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="23">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="24">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user name&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="25">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.name).to eq(&quot;John Doe&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="26">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="27">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="28">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user oauth_token&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="29">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.oauth_token).to eq(&quot;oauth token&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="30">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="31">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user oauth_expires_at&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.oauth_expires_at).to be_a(Time)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="34">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="35">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="36">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return a user refresh token&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.refresh_token).to eq(&quot;refresh token&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="38">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="39">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return the number of completed tasks&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="41">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.total_count).to eq(1)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="42">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="43">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="44">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return total of all time boxes&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="45">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.total_time_box).to eq(15)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    priorities = self.completed_tasks.map(&amp;:priority)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="missed" data-hits="0" data-linenumber="66">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    if total_count != 0</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="48">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="67">
           
-          <code class="ruby">    it &#39;should return total of all time boxes&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="49">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.total_task_time).to eq(0)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="50">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="51">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="52">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return total difference between timebox and actual time&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="53">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.total_difference).to eq(15)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="55">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="56">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return average priority&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="57">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.average_priority).to eq(2)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="58">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="60">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return average priority&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="61">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      expect(user.average_difference).to eq(15)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="62">
-          
-          
-          <code class="ruby">    end           </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="63">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="64">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="65">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  describe &quot;User Relationships&quot; do </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="66">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    it &#39;should return the user&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="67">
-          <span class="hits">1</span>
           
-          <code class="ruby">      expect(user.tasks[0].creator).to eq(user)</code>
+          <code class="ruby">      return priorities.reduce(:+) / total_count</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
@@ -1173,6 +505,168 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="70">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="71">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def average_difference</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="72">
+          
+          
+          <code class="ruby">    if total_count != 0</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="73">
+          
+          
+          <code class="ruby">      return total_difference / total_count</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="74">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="75">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="76">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="77">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def show_alerts?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="78">
+          
+          
+          <code class="ruby">    return Time.at(User.first.snooze_until).utc &lt; Time.now.utc</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def sort_upcoming_events(events)</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="83">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    events_array = []</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="84">
+          <span class="hits">5</span>
+          
+          <code class="ruby">    events.map do |event|</code>
+        </li>
+      
+        <li class="covered" data-hits="10" data-linenumber="85">
+          <span class="hits">10</span>
+          
+          <code class="ruby">      events_array &lt;&lt; [:start, event, event.start[&quot;dateTime&quot;].to_i]</code>
+        </li>
+      
+        <li class="covered" data-hits="10" data-linenumber="86">
+          <span class="hits">10</span>
+          
+          <code class="ruby">      events_array &lt;&lt; [:end, event, event.end[&quot;dateTime&quot;].to_i]  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="87">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="88">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="25" data-linenumber="89">
+          <span class="hits">25</span>
+          
+          <code class="ruby">    return events_array.sort_by{ |event| event[2] }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="90">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="91">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def find_the_gaps </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="93">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="95">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="96">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
           
           
           <code class="ruby">end</code>

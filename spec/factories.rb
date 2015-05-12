@@ -18,4 +18,6 @@ FactoryGirl.define do
     event_id    "google event id"
     priority    2
   end
+
+
 end

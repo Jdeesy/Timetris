@@ -77,4 +77,30 @@ class User < ActiveRecord::Base
   def show_alerts?
     return Time.at(User.first.snooze_until).utc < Time.now.utc
   end
+
+
+  def sort_upcoming_events(events)
+    events_array = []
+    events.map do |event|
+      events_array << [:start, event, event.start["dateTime"].to_i]
+      events_array << [:end, event, event.end["dateTime"].to_i]  
+    end
+
+    return events_array.sort_by{ |event| event[2] }
+  end
+
+  def find_the_gaps(sorted_events) 
+    counter = 0
+
+    sorted_events.each do |event|
+      case event[0]
+      when :start
+        counter += 1
+      when :end
+        counter -= 1
+      end
+      
+    end
+  end
+
 end
