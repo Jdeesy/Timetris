@@ -6,3 +6,4 @@
   <%= render "in_progress" %>
 <% end %>
 <%= render "tasks/list_item_description" %>
+<%= button_to "Remove Task", task_path(@task), class: "btn btn-default pull-right", method: :delete, data: { confirm: "Are you sure?" } %>
