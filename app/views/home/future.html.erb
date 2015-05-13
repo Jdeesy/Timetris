@@ -1,20 +1,24 @@
 <% if @events.any? %>
+
   <h2>Today's Events</h2>
+  
   <% @events.each do |event| %>
-  <% if event[0] == :google %>
-    <li class="list-group-item" style="background-color:lightblue"> GOOGLE EVENT:
-  <% else %>
-    <li class="list-group-item" style="background-color:lightyellow">
-  <% end %>
-    <%= format_local_time(event[1]) %>
-    <% if event[2] == nil %>
-      No Event Title
+
+    <% if event[0] == :google %>
+    <div class="panel panel-primary">
+    <div class="panel-heading"><%= format_local_time_without_date(event[1]) %><div class="pull-right">Google Calendar <span class="glyphicon glyphicon-calendar"></span></div></div>
     <% else %>
-      <%= event[2] %>
+    <div class="panel panel-default">
+    <div class="panel-heading"><%= format_local_time_without_date(event[1]) %><div class="pull-right">Proposed Task <span class="glyphicon glyphicon-tasks"></span></div></div>
     <% end %>
-    <br>
+    <% if event[2] == nil %>
+    <div class="panel-body">No Event Title</div>
+    <% else %>
+    <div class="panel-body"><%= event[2] %></div>
+    <% end %>
+    </div>
   <% end %>
-  </li>
+
   <% else %>
     <h2>Your future is uncertain...</h2>
     <p>You have no upcoming Google Calendar events or Timetris tasks to complete. Add tasks by clicking on "My Tasks" in the upper right-hand corner!</p>
