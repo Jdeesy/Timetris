@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/completed' => 'home#completed', as: 'completed'
   get '/reports' => 'home#reports', as: 'reports'
   get '/welcome' => 'home#welcome', as: 'welcome'
+  get '/autocal' => 'home#autocal', as: 'autocal'
   get '/complete_calendar' => 'home#complete_calendar', as: 'complete_calendar'
 
   patch '/tasks/:id/start' => 'tasks#start', as: "start_task"
