@@ -47,11 +47,9 @@ class HomeController < ApplicationController
     @upcoming_events = current_user.upcoming_events
     google_events = []
     @upcoming_events.each{ |event| google_events << [:google, event.start["dateTime"].to_i, event.summary]}
-    if @upcoming_events.any?
-      @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
-    else
-      @predicted_events = [] 
-    end
+
+
+    @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
 
     @jumboarray = google_events + @predicted_events
     @jumboarray.sort_by!{ |e| e[1] }

@@ -95,14 +95,19 @@ class User < ActiveRecord::Base
   end
 
 
-  def sort_upcoming_events(events)
+  def sort_upcoming_events(events = [])
     events_array = []
-    events.map do |event|
-      events_array << [:start, event, event.start["dateTime"].to_i]
-      events_array << [:end, event, event.end["dateTime"].to_i]  
-    end
+    if events.any?
+      events.map do |event|
+        events_array << [:start, event, event.start["dateTime"].to_i]
+        events_array << [:end, event, event.end["dateTime"].to_i]  
+      end
 
     return events_array.sort_by{ |event| event[2] }
+    else
+      return events_array
+    end
+
   end
 
   def find_the_gaps(sorted_events) 
@@ -110,11 +115,14 @@ class User < ActiveRecord::Base
     gap = []
     counter = 0
 
+    # Just a test - this basically add 3 minutes to the time and then rounds it to the nearest 3 min, adds buffer between events/tasks - can change the 3 min to anything we want like 5 min or 10 but yeah
+    # Time.at((((((Time.now.to_i + ( 3 * 60))  / 60) / 3 ) * 3) * 60)) 
+
+    sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
+
     if sorted_events[0][2] > Time.now.to_i
       gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
     end
-
-    sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 
     sorted_events.each do |event|
       case event[0]
