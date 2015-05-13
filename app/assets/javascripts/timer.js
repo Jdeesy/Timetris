@@ -8,7 +8,6 @@ $(document).ready(function(){
       url: "/tasks/" + taskID,
       method: "get",
     }).done(function(response){
-      console.log(response);
       task = response;
       getEachSecond();
     });
@@ -26,16 +25,33 @@ function getEachSecond() {
     var timeBox = response.time_box;
     var now = new Date();
     var start = new Date(startTime);
-    var timeDifference = Math.floor(((now - start)/1000));
+    var currentTimeSeconds = Math.floor(((now - start)/1000));
 
-    var hours = Math.floor(timeDifference/3600);
+    var timeBoxSeconds = (timeBox * 60);
+    var percent = Math.floor(currentTimeSeconds / timeBoxSeconds * 100);
 
-    var minutes = Math.floor((timeDifference/60) % 60);
+    var hours = Math.floor(currentTimeSeconds/3600);
 
-    var seconds = Math.floor(timeDifference % 60);
+    var minutes = Math.floor((currentTimeSeconds/60) % 60);
+
+    var seconds = Math.floor(currentTimeSeconds % 60);
+
+    var progressDifference = (currentTimeSeconds / 10);
+
+    var progressBar = $(".progress-ticker");
 
     $(".hours").html(hours);
     $(".minutes").html(minutes);
     $(".seconds").html(seconds);
 
+    if (percent >= 100) {
+      percent = 100;
+      progressBar.removeClass("progress-bar-active");
+      progressBar.addClass("progress-bar-danger");
+    }
+
+    if (progressDifference < 100) {
+      $(".progress-ticker").css("width", percent + "%");
+      $(".progress-ticker").html(percent + "%");
+    }
   }
