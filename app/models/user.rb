@@ -78,6 +78,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def average_difference_percentage
+    return "#{(average_difference) / 100.00} %"
+  end
+
+  def average_difference_percentage_in_words
+    if average_difference >= 0
+      return "#{(average_difference) / 100.00}% under"
+    else
+      return "#{(average_difference) / 100.00}% over"
+    end
+  end
+
   def show_alerts
     if self.snooze_until
       return Time.at(self.snooze_until).utc < Time.now.utc
@@ -99,13 +111,13 @@ class User < ActiveRecord::Base
     events_array = []
     events.map do |event|
       events_array << [:start, event, event.start["dateTime"].to_i]
-      events_array << [:end, event, event.end["dateTime"].to_i]  
+      events_array << [:end, event, event.end["dateTime"].to_i]
     end
 
     return events_array.sort_by{ |event| event[2] }
   end
 
-  def find_the_gaps(sorted_events) 
+  def find_the_gaps(sorted_events)
     gaps = []
     gap = []
     counter = 0
