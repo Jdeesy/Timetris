@@ -37,6 +37,15 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def cancel
+    task = Task.find_by(id: params[:id])
+    current_user.remove_calendar_event(task)
+    task.start_time = nil
+    if task.save
+      redirect_to root_path
+    end
+  end
+
   def edit
     @task = Task.find_by(id: params[:id])
     if request.xhr?
