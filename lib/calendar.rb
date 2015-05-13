@@ -30,6 +30,12 @@ module CalendarAPI
                               :headers    => {'Content-Type' => 'application/json'})
   end
 
+  def events_delete(params)
+    calendar_api = api_client.discovered_api('calendar', 'v3')
+    return api_client.execute(:api_method => calendar_api.events.delete,
+                              :parameters => params)
+  end
+
   def upcoming_events
     start_time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_time = (Time.now.utc + 86400).strftime("%Y-%m-%dT%H:%M:%S.000Z")
@@ -84,5 +90,9 @@ module CalendarAPI
                         'eventId'     => task.event_id},
                         {'description'  => task.description}
                         ).data
+  end
+
+  def remove_calendar_event(task)
+    return events_delete({'calendarId' => 'primary', 'eventId' => task.event_id})
   end
 end
