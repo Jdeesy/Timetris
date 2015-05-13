@@ -79,14 +79,14 @@ class User < ActiveRecord::Base
   end
 
   def average_difference_percentage
-    return "#{(average_difference) / 100.00} %"
+    return "#{(average_difference) * 100.00} %"
   end
 
   def average_difference_percentage_in_words
     if average_difference >= 0
-      return "#{(average_difference) / 100.00}% under"
+      return "#{(average_difference) * 100.00}% over"
     else
-      return "#{(average_difference) / 100.00}% over"
+      return "#{(average_difference) * 100.00}% under"
     end
   end
 
