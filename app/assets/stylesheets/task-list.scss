@@ -1,17 +1,23 @@
 .task {
-	.task-header {
-		.name {
-			display: inline-block;
-		}
+	.option {
+		text-align: center;
 	}	
-	.list-group-item-heading {
-		display: inline-block;
+
+	.panel-heading {
+		height: 50px;
+
+		p {
+			display: inline;
+		}
 	}
-	.buttons {
-		text-align: right;
-		display: inline-block;
-	}
-	form {
-		display: inline-block;
+	div.form_date {
+		width: 200px;
+
+		.input-group-addon {
+			height: 31px;
+		}
+		input {
+			height: 31px;
+		}
 	}
 }

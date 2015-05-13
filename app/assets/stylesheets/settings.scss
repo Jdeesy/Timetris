@@ -15,14 +15,6 @@ body {
   background-color: $primary-color;
 }
 
-.label-primary {
-  background-color: $secondary-color;
-}
-
-.glyphicon:before {
-  color: $secondary-color;
-}
-
 .jumbotron {
   background-color: transparentize(#fff, 0.05);
 }
