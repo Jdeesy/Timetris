@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:welcome]
 
   def index
+    @task = current_user.current_task
     @upcoming_events = current_user.upcoming_events
     @time_to_next_event = current_user.time_to_next_event(@upcoming_events)
     @next_event = @upcoming_events[0]
