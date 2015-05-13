@@ -2,15 +2,18 @@ var task;
 
 $(document).ready(function(){
   if ($('.task-in-progress').length > 0) {
+    var inProgress = $(".task-in-progress");
+    var taskID = inProgress.attr("id");
     var request = $.ajax({
-      url: window.location.pathname,
+      url: "/tasks/" + taskID,
       method: "get",
     }).done(function(response){
+      console.log(response);
       task = response;
       getEachSecond();
-    })
+    });
   }
-})
+});
 
 function getEachSecond() {
      window.setTimeout(getEachSecond, 1000);
@@ -23,7 +26,7 @@ function getEachSecond() {
     var timeBox = response.time_box;
     var now = new Date();
     var start = new Date(startTime);
-    var timeDifference = Math.floor(((now - start)/1000))
+    var timeDifference = Math.floor(((now - start)/1000));
 
     var hours = Math.floor(timeDifference/3600);
 
