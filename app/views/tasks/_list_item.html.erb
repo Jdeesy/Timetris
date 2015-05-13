@@ -1,7 +1,12 @@
 <div class="panel panel-info task">
 	<div class="panel-heading">
 		<div class="col-xs-12 col-sm-6 col-md-6 name">
-			<h5><%= task.name %>
+			<h5 class="visible-md visible-lg"><%= task.name.truncate(140) %>
+				<a href="#" class="task-edit">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</a>
+			</h5>
+			<h5 class="visible-sm visible-xs"><%= task.name.truncate(76) %>
 				<a href="#" class="task-edit">
 					<span class="glyphicon glyphicon-pencil"></span>
 				</a>

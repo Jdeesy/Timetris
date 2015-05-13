@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	$("#user_show_alerts").bootstrapSwitch();
+	$("#user_alerts_enabled").bootstrapSwitch();
 })

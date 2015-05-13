@@ -40,11 +40,11 @@ class Task < ActiveRecord::Base
   end
 
   def priority_subtract
-    self.update(priority: self.priority -= 1)
+    self.update(priority: self.priority += 1)
   end
 
   def priority_add
-    self.update(priority: self.priority += 1)
+    self.update(priority: self.priority -= 1)
   end
 
   def calendar_event_created?

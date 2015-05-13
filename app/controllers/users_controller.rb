@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.show_alerts = user_params[:show_alerts]
+    @user.alerts_enabled = user_params[:alerts_enabled]
     @user.save
     redirect_to edit_user_path
   end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:snooze_until, :default_time_increment, :show_alerts)
+    params.require(:user).permit(:snooze_until, :default_time_increment, :alerts_enabled)
   end
 
 end
