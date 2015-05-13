@@ -38,7 +38,7 @@
         <% else %>
           <td class="col-md-1">N/A</td>
         <% end %>
-        <td class="col-md-1"><%= task.priority %></td>
+        <td class="col-md-1"><%= format_priority(task) %></td>
         <td class="col-md-1"><%= task.duration %> minutes</td>
         <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
         <td class="col-md-1"><%= format_local_time(task.start_time) %></td>
