@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'should have alerts disabled if show_alerts is set to false' do
-      user.show_alerts = false
+      user.alerts_enabled = false
       expect(user.show_alerts).to be false
     end
   end
