@@ -1,6 +1,6 @@
-<!-- change this to if jumboarray.any? to test the changes, read home_controller for more info -->
-<% if @jumboarray.any? %>
-  <% @jumboarray.each do |event| %>
+<% if @events.any? %>
+  <h2>Today's Events</h2>
+  <% @events.each do |event| %>
   <% if event[0] == :google %>
     <li class="list-group-item" style="background-color:lightblue"> GOOGLE EVENT:
   <% else %>
@@ -16,7 +16,8 @@
   <% end %>
   </li>
   <% else %>
-    <h1>FOOL! You have no Google Calendar events or Timetris tasks!</h1>
+    <h2>Your future is uncertain...</h2>
+    <p>You have no upcoming Google Calendar events or Timetris tasks to complete. Add tasks by clicking on "My Tasks" in the upper right-hand corner!</p>
 <% end %>
 
 

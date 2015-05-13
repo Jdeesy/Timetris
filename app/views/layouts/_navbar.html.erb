@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="/autocal">Timetris</a>
+      <a class="navbar-brand" href="<%= root_path %>">Timetris</a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -14,9 +14,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" role="tablist">
         <% if current_user %>
+          <li class="<%= 'active' if current_page?(past_path) %>"><%= link_to "Past", past_path %></li>
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Present", root_path %></li>
-          <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Future", pending_path %></li>
-          <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Past", reports_path %></li>
+          <li class="<%= 'active' if current_page?(future_path) %>"><%= link_to "Future", future_path %></li>
         <% else %>
           <li class="<%= 'active' if current_page?(welcome_path) %>"><%= link_to "Welcome", root_path %></li>
         <% end %>
@@ -25,10 +25,11 @@
       <ul class="nav navbar-nav navbar-right">
 
         <% if current_user %>
-          <li><a target="_blank" href="https://docs.google.com/forms/d/1PNhgfo13lDBA7bPfKr-t_FfeZ1zKN8xjrJRgJKDcxDk/viewform?usp=send_form">Feedback</a></li>
+          <li class="<%= 'active' if current_page?(tasks_path) %>"><%= link_to "My Tasks", tasks_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li><a target="_blank" href="https://docs.google.com/forms/d/1PNhgfo13lDBA7bPfKr-t_FfeZ1zKN8xjrJRgJKDcxDk/viewform?usp=send_form">Feedback</a></li>
               <li><a href="<%= edit_user_path %>">Settings</a></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
             </ul>

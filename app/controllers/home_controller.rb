@@ -12,16 +12,11 @@ class HomeController < ApplicationController
     end
   end
 
-  def pending
-    @task = Task.new
-    @tasks = current_user.pending_tasks.sort_by(&:id).reverse
-  end
-
   def completed
     @tasks = current_user.completed_tasks.sort_by{ |task| task.end_time }.reverse
   end
 
-  def reports
+  def past
     @tasks = current_user.completed_tasks.sort_by{ |task| task.end_time }.reverse
 
     @count = current_user.total_count
@@ -40,14 +35,14 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
-  def autocal
+  def future
     @upcoming_events = current_user.upcoming_events
     google_events = []
     @upcoming_events.each{ |event| google_events << [:google, event.start["dateTime"].to_i, event.summary]}
 
     @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
 
-    @jumboarray = google_events + @predicted_events
-    @jumboarray.sort_by!{ |e| e[1] }
+    @events = google_events + @predicted_events
+    @events.sort_by!{ |e| e[1] }
   end
 end
