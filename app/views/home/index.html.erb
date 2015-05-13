@@ -1,3 +1,5 @@
+ <meta http-equiv="refresh" content="60">
+
 <% if @task %>
 	<%= render "tasks/in_progress" %>
 
@@ -10,7 +12,7 @@
 		<% if @time_to_next_event >= 1440 %>
 			<h2>Relax! You have no more events today.</h2>
 		<% else %>
-			<h2>You have <%= time_ago_in_words(@time_to_next_event.minutes.from_now) %> until your next event.</h2>
+			<h2>You have <span id="refresh"><%= time_ago_in_words(@time_to_next_event.minutes.from_now) %></span> until your next event.</h2>
 		<% end %>
 
 			<% if @tasks.any? %>
