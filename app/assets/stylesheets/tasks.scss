@@ -1,0 +1,50 @@
+.task {
+	.option {
+		text-align: center;
+	}
+
+	h5, h4, h3 {
+		margin-top: 0;
+		display: inline-block;
+	}
+
+	.panel-heading {
+		.name {
+			display: inline;
+			padding: 0;
+		}
+		.date-label {
+			display: inline;
+		}
+		.date {
+			display: table;
+
+			.input-group-addon {
+				height: 31px;
+			}
+			input {
+				height: 31px;
+			}
+		}
+		[name="task[name]"] {
+			border-radius: 4px 0px 0px 4px;
+		}
+	}
+
+	.task-buttons {
+		.start {
+			border-radius: 4px 0px 0px 4px;
+		}
+		.remove {
+			border-radius: 0px 4px 4px 0px;
+		}
+	}
+}
+
+#new_task {
+	display: table;
+
+	[name="task[name]"] {
+		border-radius: 4px 0px 0px 4px;
+	}
+}

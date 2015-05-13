@@ -9,25 +9,14 @@
 // #998A2F, #002D40, #2C594F, #333
 
 $primary-color: #002D40;
+$secondary-color: #0078AB;
 
 body {
   background-color: $primary-color;
 }
 
-.label-primary {
-  background-color: $primary-color;
-}
-
-.glyphicon-minus:before {
-  color: $primary-color;
-}
-
-.glyphicon-plus:before {
-  color: $primary-color;
-}
-
-.glyphicon-pencil:before {
-  color: $primary-color;
+.glyphicon {
+	color: black;
 }
 
 .jumbotron {

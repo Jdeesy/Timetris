@@ -1,10 +1,18 @@
+<h2>Pending Tasks</h2>
+
 <%= render partial: "tasks/new" %>
 
 <br>
 
-<ul class="list-group">
+<% if @tasks.any? %>
   <% @tasks.each do |task| %>
     <%= render partial: "tasks/list_item", locals: {task: task} %>
   <% end %>
+<% else %>
+<ul class="list-group">
+	<li class="list-group-item task">
+  	<h4 class="list-group-item-heading">It looks like you don't have any pending tasks!</h4>
+	</li>
 </ul>
+<% end %>
 

@@ -13,10 +13,12 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" role="tablist">
-        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Present", root_path %></li>
         <% if current_user %>
-        <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Future", pending_path %></li>
-        <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Past", reports_path %></li>
+          <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Present", root_path %></li>
+          <li class="<%= 'active' if current_page?(pending_path) %>"><%= link_to "Future", pending_path %></li>
+          <li class="<%= 'active' if current_page?(reports_path) %>"><%= link_to "Past", reports_path %></li>
+        <% else %>
+          <li class="<%= 'active' if current_page?(welcome_path) %>"><%= link_to "Welcome", root_path %></li>
         <% end %>
       </ul>
 

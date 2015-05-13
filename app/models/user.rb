@@ -92,15 +92,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def show_alerts
+  def alerts_enabled
     if self.snooze_until
-      return Time.at(self.snooze_until).utc < Time.now.utc
+      return true
     else
       return false
     end
   end
 
-  def show_alerts=(enabled)
+  def alerts_enabled=(enabled)
     if enabled == "1" ||  enabled == true
       self.snooze_until ||= Time.new(1776, 07, 04, 0, 0, 0)
     else
@@ -108,6 +108,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def show_alerts
+    if self.snooze_until
+      return Time.at(self.snooze_until).utc < Time.now.utc
+    else
+      return false
+    end
+  end
 
   def sort_upcoming_events(events = [])
     events_array = []

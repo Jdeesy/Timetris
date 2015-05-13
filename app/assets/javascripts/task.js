@@ -1,23 +1,25 @@
 $(document).ready(function(){
 
-  $(document).on("click", ".task-edit", function(e) {
+  $(document).on("click", ".task .task-edit", function(e) {
     e.preventDefault();
-    var taskForm = $(this).parent().parent();
-    var taskID = taskForm.parent().attr('id');
+    var nameHeader = $(this).parent().parent()
+    var taskID = nameHeader.parent().parent().attr('id');
 
     $.ajax({
       type: "GET",
       url: "tasks/" + taskID + "/edit"
     }).done(function(r) {
-      taskForm.replaceWith(r);
+      nameHeader.html(r);
     });
   });
 
-  $(document).on("submit", ".task .task-form form", function(e) {
+  $(document).on("submit", ".task .name form", function(e) {
     e.preventDefault();
     var taskForm = $(this).parent()
-    var taskID = taskForm.parent().attr('id');
+    var taskID = taskForm.parent().parent().parent().attr('id');
     var formData = $(this).serialize();
+
+    console.log(formData);
 
     $.ajax({
       type: "POST",
@@ -28,55 +30,63 @@ $(document).ready(function(){
     });
   });
 
-  $(document).on("click", ".timebox-subtract", function(e) {
+  // $(".task .form_date .due_date").change(function(e) {
+  //   $(this).parent().submit();
+  // });
+
+  $(".edit_task input[type='date']").change(function(e) {
+    $(this).parent().submit();
+  })
+
+  $(document).on("click", ".task .timebox-subtract", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/tb_sub'
     }).done(function(r) {
-      task.find('.time-box').text(r.time_box);
+      task.find('.timebox-tag').html(r);
     });
   });
 
-  $(document).on("click", ".timebox-add", function(e) {
+  $(document).on("click", ".task .timebox-add", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/tb_add'
     }).done(function(r) {
-      task.find('.time-box').text(r.time_box);
+      task.find('.timebox-tag').html(r);
     });
   });
 
-  $(document).on("click", ".priority-subtract", function(e) {
+  $(document).on("click", ".task .priority-subtract", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/pr_sub'
     }).done(function(r) {
-      task.find('.priority').text(r.priority);
+      task.find('.priority-tag').html(r);
     });
   });
 
-  $(document).on("click", ".priority-add", function(e) {
+  $(document).on("click", ".task .priority-add", function(e) {
     e.preventDefault();
-    var task = $(this).parent();
+    var task = $(this).parent().parent().parent().parent().parent();
     var taskID = task.attr('id');
 
     $.ajax({
       type: "POST",
       url: "tasks/" + taskID + '/pr_add'
     }).done(function(r) {
-      task.find('.priority').text(r.priority);
+      task.find('.priority-tag').html(r);
     });
   });
 
@@ -89,11 +99,13 @@ $(document).ready(function(){
       type: "POST",
       url: url,
       data: data
-    }).success(function(r) {
-      var save = $("<div class='alert alert-success' role='alert'>Changes saved!</div>")
-        form.append(save);
-        save.fadeOut(800);
-    });
+    })
+
+    // .success(function(r) {
+    //   var save = $("<div class='alert alert-success' role='alert'>Changes saved!</div>")
+    //     $('.jumbotron').append(save);
+    //     save.fadeOut(2000);
+    // });
   });
 
 });
