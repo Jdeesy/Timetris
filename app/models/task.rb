@@ -57,4 +57,8 @@ class Task < ActiveRecord::Base
   def calendar_event_created?
     self.task_in_progress || self.end_time
   end
+
+  def form_due_date
+    return Time.at(self.due_date).strftime("%F") if self.due_date
+  end
 end
