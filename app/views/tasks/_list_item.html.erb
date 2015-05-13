@@ -1,36 +1,47 @@
 <div class="panel panel-default task">
 	<div class="panel-heading">
-		<p><strong><%= task.name %></strong></p>
-		<div class="input-group date form_date pull-right" data-date="" data-date-format="dd MM yyyy" data-link-field="due_date" data-link-format="yyyy-mm-dd">
+		<%= task.name %>
+	</div>
+  <div class="panel-body">
+	  <div class="col-xs-12 col-sm-6 col-md-6 option">
+	  		<h5>Timebox: </h5>
+	  			<h5>
+			  		<a href="#" class="timebox-subtract">
+							<span class="glyphicon glyphicon-minus-sign"></span>
+						</a>
+					</h5>
+		  		<h4>
+		  			<span class="label label-primary">30 min</span>
+		  		</h4>
+		  		<h5>
+			  		<a href="#" class="timebox-add">
+							<span class="glyphicon glyphicon-plus-sign"></span>
+						</a>
+					</h5>
+	  </div>
+	  <div class="col-xs-12 col-sm-6 col-md-6 option">
+  		<h5>Priority: </h5>
+	  			<h5>
+			  		<a href="#" class="timebox-subtract">
+							<span class="glyphicon glyphicon-minus-sign"></span>
+						</a>
+					</h5>
+		  		<h4>
+		  			<span class="label label-primary">Medium</span>
+		  		</h4>
+		  		<h5>
+			  		<a href="#" class="timebox-add">
+							<span class="glyphicon glyphicon-plus-sign"></span>
+						</a>
+					</h5>
+	  </div>	  
+  </div>
+  <div class="panel-footer">
+  	<div class="col-xs-12 col-sm-6 col-md-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="due_date" data-link-format="yyyy-mm-dd">
 			<input class="form-control" size="16" type="text" value="" readonly>
 			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 		</div>
-		<input type="hidden" id="due_date" value="" /><br/>
-
-	</div>
-  <div class="panel-body">
-	  <div class="col-xs-12 col-sm-6 col-md-6 option">
-	  		<p>Timebox
-		  		<a href="#" class="timebox-subtract">
-						<span class="glyphicon glyphicon-minus-sign"></span>
-					</a>
-		  		<span class="label label-primary">30 min</span>
-		  		<a href="#" class="timebox-add">
-						<span class="glyphicon glyphicon-plus-sign"></span>
-					</a>
-				</p>
-	  </div>
-	  <div class="col-xs-12 col-sm-6 col-md-6 option">
-	  	<p>Priority
-		  		<a href="#" class="priority-subtract">
-						<span class="glyphicon glyphicon-minus-sign"></span>
-					</a>
-		  		<span class="label label-primary">High</span>
-		  		<a href="#" class="priority-add">
-						<span class="glyphicon glyphicon-plus-sign"></span>
-					</a>
-				</p>
-	  </div>	  
+		<input type="hidden" id="due_date" value="" />
   </div>
 </div>
