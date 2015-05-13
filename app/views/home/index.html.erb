@@ -17,17 +17,9 @@
 
 				<h2>Here are some things to do before your next event:</h2>
 
-				<table>
-				  <tr>
-						<%= render 'tasks/headers' %>
-				  </tr>
 				  <% @tasks.each do |task| %>
-				    <tr>
-				      <%= render partial: "tasks/task_row", locals: {task: task} %>
-				      <%= render partial: "tasks/start_task", locals: {task: task} %>
-				    </tr>
+				      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
 				  <% end %>
-				</table>
 
 			<% elsif current_user.pending_tasks.any? %>
 
