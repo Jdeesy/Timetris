@@ -55,7 +55,7 @@ RSpec.describe Task, type: :model do
     end
 
     it 'should return the difference between task time and time box in words' do
-      expect(task.time_box_difference_in_words).to eq("15 minutes under")
+      expect(task.time_box_difference_in_words).to eq("15 min under")
     end
 
     it 'should return false since no task is in progress' do
