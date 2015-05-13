@@ -1,7 +1,11 @@
 <div class="panel panel-info task">
 	<div class="panel-heading">
 		<div class="col-xs-12 col-sm-6 col-md-6 name">
-			<h5><%= task.name %></h5>
+			<h5><%= task.name %>
+				<a href="#" class="task-edit">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</a>
+			</h5>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="due_date" data-link-format="yyyy-mm-dd">
 			<span class="input-group-addon"><span>Due:</span></span>
@@ -23,7 +27,7 @@
 					</a>
 				</h5>
 	  		<h4>
-	  			<span class="label label-primary">30 min</span>
+	  			<span class="label label-primary"><span class="time-box"><%= task.time_box %></span> min</span>
 	  		</h4>
 	  		<h5>
 		  		<a href="#" class="timebox-add">
@@ -43,7 +47,14 @@
 					</a>
 				</h5>
 	  		<h4>
-	  			<span class="label label-primary">Medium</span>
+	  			<% case task.priority %>
+			    <% when 1 %>
+			      <span class="label label-danger">High</span>
+			    <% when 2 %>
+			      <span class="label label-warning">Medium</span>
+			    <% when 3 %>
+			      <span class="label label-success">Low</span>
+			    <% end %>
 	  		</h4>
 	  		<h5>
 		  		<a href="#" class="timebox-add">

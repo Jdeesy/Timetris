@@ -3,7 +3,7 @@
 		text-align: center;
 	}
 
-	h5, h4 {
+	h5, h4, h3 {
 		margin-top: 0;
 		display: inline-block;
 	}
@@ -26,5 +26,13 @@
 				height: 31px;
 			}
 		}
+	}
+}
+
+#new_task {
+	display: table;
+
+	[name="task[name]"] {
+		border-radius: 4px 0px 0px 4px;
 	}
 }

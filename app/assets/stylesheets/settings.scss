@@ -15,6 +15,10 @@ body {
   background-color: $primary-color;
 }
 
+.glyphicon {
+	color: black;
+}
+
 .jumbotron {
   background-color: transparentize(#fff, 0.05);
 }
