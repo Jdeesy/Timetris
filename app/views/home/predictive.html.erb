@@ -1,3 +1,0 @@
-<% @predicted_events.each do |event| %>
-  <%= "AT #{format_local_time(Time.at(event[0]))}: You should do #{event[1].name}" %><br>
-<% end %>

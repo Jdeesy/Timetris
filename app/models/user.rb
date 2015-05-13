@@ -114,6 +114,8 @@ class User < ActiveRecord::Base
       gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
     end
 
+    sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
+
     sorted_events.each do |event|
       case event[0]
       when :start
@@ -145,7 +147,7 @@ class User < ActiveRecord::Base
     gaps.each do |gap|
       tasks.each do |task|
         if task.time_box <= (gap[1]/60)
-          all_possible_tasks << [gap[0], task]
+          all_possible_tasks << [:task, gap[0], task.name]
           tasks.delete(task)
           break
         end
