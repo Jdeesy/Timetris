@@ -1,4 +1,4 @@
-<div class="panel panel-info task">
+<div class="panel panel-info task" id="<%= task.id %>">
 	<div class="panel-heading">
 		<div class="col-xs-12 col-sm-6 col-md-6 name">
 			<h5 class="visible-md visible-lg"><%= task.name.truncate(140) %>
@@ -12,13 +12,12 @@
 				</a>
 			</h5>
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="due_date" data-link-format="yyyy-mm-dd">
+		<div class="col-xs-12 col-sm-6 col-md-6 input-group date form_date">
 			<span class="input-group-addon"><span>Due:</span></span>
-			<input class="form-control" size="16" type="text" value="" readonly>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				<%= form_for task, method: "patch" do |f|%>
+				<%= f.date_field :due_date, class: "form-control" %>
+			<% end %>
 		</div>
-		<input type="hidden" id="due_date" value="" />
 	</div>
   <div class="panel-body">
 	  <div class="col-xs-12 col-sm-6 col-md-6 option">
@@ -31,8 +30,8 @@
 						<span class="glyphicon glyphicon-minus-sign"></span>
 					</a>
 				</h5>
-	  		<h4>
-	  			<span class="label label-primary"><span class="time-box"><%= task.time_box %></span> min</span>
+	  		<h4 class="timebox-tag">
+	  			<%= render partial: "tasks/timebox_tag", locals: {task: task} %>
 	  		</h4>
 	  		<h5>
 		  		<a href="#" class="timebox-add">
@@ -47,26 +46,30 @@
   		</div>
   		<div class="col-xs-8 col-sm-8 col-md-8 option">
   			<h5>
-		  		<a href="#" class="timebox-subtract">
+		  		<a href="#" class="priority-subtract">
 						<span class="glyphicon glyphicon-minus-sign"></span>
 					</a>
 				</h5>
-	  		<h4>
-	  			<% case task.priority %>
-			    <% when 1 %>
-			      <span class="label label-danger">High</span>
-			    <% when 2 %>
-			      <span class="label label-warning">Medium</span>
-			    <% when 3 %>
-			      <span class="label label-success">Low</span>
-			    <% end %>
+	  		<h4 class="priority-tag">
+	  			<%= render partial: "tasks/priority_tag", locals: {task: task} %>
 	  		</h4>
 	  		<h5>
-		  		<a href="#" class="timebox-add">
+		  		<a href="#" class="priority-add">
 						<span class="glyphicon glyphicon-plus-sign"></span>
 					</a>
 				</h5>
 			</div>
-	  </div>	  
+	  </div>
+  </div>
+	<div class="panel-footer">
+	  <div class="btn-group btn-group-justified task-buttons" role="group" aria-label="...">
+	  	<div class="btn-group" role="group">
+				<%= button_to "Start Task", start_task_path(task), class: "btn btn-default start", method: :patch %>
+			</div>
+			<div class="btn-group" role="group">
+				<%= button_to "Remove Task", task_path(task), class: "btn btn-default remove", method: :delete, data: { confirm: "Are you sure?" } %>
+			</div>
+		</div>
+
   </div>
 </div>

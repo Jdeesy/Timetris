@@ -26,6 +26,18 @@
 				height: 31px;
 			}
 		}
+		[name="task[name]"] {
+			border-radius: 4px 0px 0px 4px;
+		}
+	}
+
+	.task-buttons {
+		.start {
+			border-radius: 4px 0px 0px 4px;
+		}
+		.remove {
+			border-radius: 0px 4px 4px 0px;
+		}
 	}
 }
 

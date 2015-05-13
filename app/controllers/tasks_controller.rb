@@ -70,7 +70,8 @@ class TasksController < ApplicationController
     if request.xhr?
       @task = Task.find_by(id: params[:id])
       @task.time_box_subtract
-      render json: Task.find_by(id: params[:id])
+      @task.save
+      render partial: "tasks/timebox_tag", locals: {task: Task.find_by(id: params[:id])}
     end
   end
 
@@ -78,7 +79,8 @@ class TasksController < ApplicationController
     if request.xhr?
       @task = Task.find_by(id: params[:id])
       @task.time_box_add
-      render json: Task.find_by(id: params[:id])
+      @task.save
+      render partial: "tasks/timebox_tag", locals: {task: Task.find_by(id: params[:id])}
     end
   end
 
@@ -86,7 +88,8 @@ class TasksController < ApplicationController
     if request.xhr?
       @task = Task.find_by(id: params[:id])
       @task.priority_subtract
-      render json: Task.find_by(id: params[:id])
+      @task.save
+      render partial: "tasks/priority_tag", locals: {task: Task.find_by(id: params[:id])}
     end
   end
 
@@ -94,7 +97,8 @@ class TasksController < ApplicationController
     if request.xhr?
       @task = Task.find_by(id: params[:id])
       @task.priority_add
-      render json: Task.find_by(id: params[:id])
+      @task.save
+      render partial: "tasks/priority_tag", locals: {task: Task.find_by(id: params[:id])}
     end
   end
 

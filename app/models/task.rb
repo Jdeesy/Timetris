@@ -32,19 +32,19 @@ class Task < ActiveRecord::Base
   end
 
   def time_box_subtract
-    self.update(time_box: self.time_box -= self.creator.default_time_increment)
+    self.time_box -= self.creator.default_time_increment
   end
 
   def time_box_add
-    self.update(time_box: self.time_box += self.creator.default_time_increment)
+    self.time_box += self.creator.default_time_increment
   end
 
   def priority_subtract
-    self.update(priority: self.priority += 1)
+    self.priority += 1
   end
 
   def priority_add
-    self.update(priority: self.priority -= 1)
+    self.priority -= 1
   end
 
   def calendar_event_created?
