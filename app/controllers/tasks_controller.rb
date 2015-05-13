@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     task = Task.find_by(id: params[:id])
     calendar_event = current_user.complete_task(task)
     task.update(event_id: calendar_event.id, end_time: Time.at(calendar_event.end['dateTime']))
-    redirect_to task
+    redirect_to root_path
   end
 
   def edit

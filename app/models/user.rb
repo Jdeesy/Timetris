@@ -54,15 +54,15 @@ class User < ActiveRecord::Base
   end
 
   def total_time_box
-    self.completed_tasks.map(&:time_box).reduce(:+)
+    self.completed_tasks.map(&:time_box).reduce(:+) || 0
   end
 
   def total_task_time
-    self.completed_tasks.map(&:duration).reduce(:+)
+    self.completed_tasks.map(&:duration).reduce(:+) || 0
   end
 
   def total_difference
-    self.completed_tasks.map(&:time_box_difference).reduce(:+)
+    self.completed_tasks.map(&:time_box_difference).reduce(:+) || 0
   end
 
   def average_priority
@@ -75,6 +75,16 @@ class User < ActiveRecord::Base
   def average_difference
     if total_count != 0
       return total_difference / total_count
+    else
+      0
+    end
+  end
+
+  def average_difference_in_words
+    if average_difference >= 0
+      return "#{average_difference} minutes under"
+    else
+      return "#{average_difference} minutes over"
     end
   end
 
@@ -97,10 +107,11 @@ class User < ActiveRecord::Base
 
   def sort_upcoming_events(events = [])
     events_array = []
+
     if events.any?
       events.map do |event|
         events_array << [:start, event, event.start["dateTime"].to_i]
-        events_array << [:end, event, event.end["dateTime"].to_i]  
+        events_array << [:end, event, event.end["dateTime"].to_i]
       end
 
     return events_array.sort_by{ |event| event[2] }
@@ -110,13 +121,13 @@ class User < ActiveRecord::Base
 
   end
 
-  def find_the_gaps(sorted_events) 
+  def find_the_gaps(sorted_events)
     gaps = []
     gap = []
     counter = 0
 
     # Just a test - this basically add 3 minutes to the time and then rounds it to the nearest 3 min, adds buffer between events/tasks - can change the 3 min to anything we want like 5 min or 10 but yeah
-    # Time.at((((((Time.now.to_i + ( 3 * 60))  / 60) / 3 ) * 3) * 60)) 
+    # Time.at((((((Time.now.to_i + ( 3 * 60))  / 60) / 3 ) * 3) * 60))
 
     sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 

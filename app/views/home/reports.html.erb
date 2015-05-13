@@ -1,51 +1,60 @@
-<% if @tasks.any? %>
-  <table>
+<div class="col-md-12 col-sm-12 col-xs-12 panel panel-default report-panel">
+  <div class="panel-body">
+    <p>On average you completed your tasks <strong><%= current_user.average_difference_in_words %></strong> your timebox.</p>
+  </div>
+</div>
+
+<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5>Total Tasks</h5>
+    </div>
+    <div class="panel-body">
+      <%= @count %> completed
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+     <h5>Total Task Time</h5>
+    </div>
+    <div class="panel-body">
+      <%= @task_time %> min
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5>Total Timebox</h5>
+    </div>
+    <div class="panel-body">
+      <%= @time_box %> min
+    </div>
+  </div>
+</div>
+
+
+<table class="table table-striped">
+  <tr>
+    <th class="col-md-1">Date</th>
+    <th class="col-md-1">Task Name</th>
+    <th class="col-md-1 visible-md visible-lg">Timebox</th>
+    <th class="col-md-1 visible-md visible-lg">Task Time</th>
+    <th class="col-md-1">Timebox Difference</th>
+  </tr>
+
+  <% @tasks.each do |task| %>
     <tr>
-      <th class="col-md-2">Total Tasks Completed</th>
-      <th class="col-md-2">Total Time Box</th>
-      <th class="col-md-2">Total Task Time</th>
-      <th class="col-md-2">Timebox Difference</th>
-      <th class="col-md-2">Average Difference</th>
-      <th class="col-md-2">Average Priority</th>
+      <td class="col-md-1"><%= format_report_time(task.start_time) %></td>
+      <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
+      <td class="col-md-1 visible-md visible-lg"><%= task.time_box %> min</td>
+      <td class="col-md-1 visible-md visible-lg"><%= task.duration %> min</td>
+      <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
     </tr>
-    <tr>
-      <td class="col-md-2"><%= @count %></td>
-      <td class="col-md-2"><%= @time_box %> minutes</td>
-      <td class="col-md-2"><%= @task_time %> minutes</td>
-      <td class="col-md-2"><%= @difference %> minutes</td>
-      <td class="col-md-2"><%= @avg_difference %> minutes</td>
-      <td class="col-md-2"><%= @avg_priority %></td>
-    </tr>
-  </table>
-  <br>
-  <table>
-    <tr>
-      <th class="col-md-1">Task Name</th>
-      <th class="col-md-1">Time Box</th>
-      <th class="col-md-1">Due Date</th>
-      <th class="col-md-1">Priority</th>
-      <th class="col-md-1">Task Time</th>
-      <th class="col-md-1">Timebox Difference</th>
-      <th class="col-md-1">Start Date</th>
-      <th class="col-md-1">End Date</th>
-    </tr>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
-        <td class="col-md-1"><%= task.time_box %> min</td>
-        <% if task.due_date %>
-          <td class="col-md-1"><%= format_local_time(task.due_date) %></td>
-        <% else %>
-          <td class="col-md-1">N/A</td>
-        <% end %>
-        <td class="col-md-1"><%= task.priority %></td>
-        <td class="col-md-1"><%= task.duration %> minutes</td>
-        <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
-        <td class="col-md-1"><%= format_local_time(task.start_time) %></td>
-        <td class="col-md-1"><%= format_local_time(task.end_time) %></td>
-      </tr>
-    <% end %>
-  </table>
-<% else %>
-  No Reports!
-<% end %>
+  <% end %>
+
+</table>

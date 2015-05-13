@@ -1,0 +1,54 @@
+<% if @tasks.any? %>
+  <!-- <div class="panel panel-default">
+    <div class="panel-heading">Reports</div>
+    <div class="panel-body">
+      <p>On average you completed your tasks <strong><%#= current_user.average_difference_in_words %></strong> your timebox.</p>
+      <table class="table">
+        <tr>
+          <th class="col-md-2">Total Time Spent Completing Tasks</th>
+          <th class="col-md-2">Average Difference</th>
+          <th class="col-md-2">Total Tasks Completed</th>
+        </tr>
+        <tr>
+          <td class="col-md-2"><%#= @task_time %> min</td>
+          <td class="col-md-2"><%#= current_user.average_difference %> min</td>
+          <td class="col-md-2"><%#= @count %></td>
+        </tr>
+      </table>
+    </div> -->
+    <div class="col-md-4 col-sm-4 col-xs-12 panel-default panel">
+      <!-- <div class="panel-heading"> -->
+      BUTT
+    <!-- </div> -->
+    <div class="panel-body">
+    My Body
+    </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 panel-primary panel">BUTT</div>
+    <div class="col-md-4 col-sm-4 col-xs-12 panel-danger panel">JDOES</div>
+
+    <br>
+    <table class="table">
+      <tr>
+        <th class="col-md-1">Date</th>
+        <th class="col-md-1">Task Name</th>
+        <th class="col-md-1 visible-md visible-lg">Timebox</th>
+        <th class="col-md-1 visible-md visible-lg">Task Time</th>
+        <th class="col-md-1">Timebox Difference</th>
+      </tr>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td class="col-md-1"><%= format_report_time(task.start_time) %></td>
+          <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
+          <td class="col-md-1 visible-md visible-lg"><%= task.time_box %> min</td>
+          <td class="col-md-1 visible-md visible-lg"><%= task.duration %> min</td>
+          <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
+        </tr>
+      <% end %>
+    </table>
+<% else %>
+  <div class="panel panel-default">
+    <div class="panel-heading">No Reports!</div>
+    <div class="panel-body">
+  </div>
+<% end %>
