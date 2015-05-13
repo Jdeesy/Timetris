@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   root 'home#index'
-  get '/pending' => 'home#pending', as: 'pending'
   get '/completed' => 'home#completed', as: 'completed'
-  get '/reports' => 'home#reports', as: 'reports'
+  get '/past' => 'home#past', as: 'past'
   get '/welcome' => 'home#welcome', as: 'welcome'
-  get '/autocal' => 'home#autocal', as: 'autocal'
+  get '/future' => 'home#future', as: 'future'
   get '/complete_calendar' => 'home#complete_calendar', as: 'complete_calendar'
 
   patch '/tasks/:id/start' => 'tasks#start', as: "start_task"
@@ -28,7 +27,7 @@ Rails.application.routes.draw do
   patch '/settings' => 'users#update', as: 'user'
 
   resources :sessions, only: [:create, :destroy]
-  resources :tasks, only: [:create, :show, :edit, :update, :destroy]
+  resources :tasks
 
   get "*path", to: redirect('/')
 end

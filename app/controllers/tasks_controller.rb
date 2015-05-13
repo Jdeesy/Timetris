@@ -1,9 +1,14 @@
 class TasksController < ApplicationController
 
+  def index
+    @task = Task.new
+    @tasks = current_user.pending_tasks.sort_by(&:id).reverse
+  end
+
   def create
     task = Task.new(task_params)
     task.update(creator: current_user)
-    redirect_to pending_path
+    redirect_to tasks_path
   end
 
   def show
@@ -51,14 +56,14 @@ class TasksController < ApplicationController
     if request.xhr?
       render partial: "new"
     else
-      redirect_to pending_path
+      redirect_to tasks_path
     end
   end
 
   def destroy
     @task = Task.find_by(id: params[:id])
     @task.destroy
-    redirect_to pending_path
+    redirect_to tasks_path
   end
 
   def update
@@ -71,7 +76,7 @@ class TasksController < ApplicationController
     if request.xhr?
       render partial: "list_item_header", locals: {task: @task}
     else
-      redirect_to pending_path
+      redirect_to tasks_path
     end
   end
 
