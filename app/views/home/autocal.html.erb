@@ -1,0 +1,23 @@
+<!-- change this to if jumboarray.any? to test the changes, read home_controller for more info -->
+<% if @jumboarray.any? %>
+  <% @jumboarray.each do |event| %>
+  <% if event[0] == :google %>
+    <li class="list-group-item" style="background-color:lightblue"> GOOGLE EVENT:
+  <% else %>
+    <li class="list-group-item" style="background-color:lightyellow">
+  <% end %>
+    <%= format_local_time(event[1]) %>
+    <% if event[2] == nil %>
+      No Event Title
+    <% else %>
+      <%= event[2] %>
+    <% end %>
+    <br>
+  <% end %>
+  </li>
+  <% else %>
+    <h1>FOOL! You have no Google Calendar events or Timetris tasks!</h1>
+<% end %>
+
+
+
