@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     return pending
   end
 
+  def current_task
+    self.pending_tasks.select{ |task| task.task_in_progress }[0]
+  end
+
   def possible_tasks(events)
     pending_tasks.select do |task|
       task.time_box <= time_to_next_event(events)

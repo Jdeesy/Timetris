@@ -12,9 +12,9 @@
 </head>
 <body>
   <div class="container">
-  <% if !@task || !@task.task_in_progress %>
+  <%# if !@task || !@task.task_in_progress %>
     <%= render partial: "layouts/navbar" %>
-  <% end %>
+  <%# end %>
     <div class="notification"></div>
     <%= render partial: "layouts/jumbotron" %>
   </div>

@@ -1,7 +1,5 @@
 class TasksController < ApplicationController
 
-  skip_before_action :require_completed_task, only: [:show, :complete, :update]
-
   def create
     task = Task.new(task_params)
     task.update(creator: current_user)
@@ -25,9 +23,11 @@ class TasksController < ApplicationController
     if request.xhr?
       render partial: "tasks/alert", locals: {task: task}
     else
-      calendar_event = current_user.begin_task(task)
-      task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start['dateTime']))
-      redirect_to task
+      if !current_user.current_task
+        calendar_event = current_user.begin_task(task)
+        task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start['dateTime']))
+      end
+      redirect_to root_path
     end
   end
 

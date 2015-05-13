@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  before_action :require_login, :require_completed_task
+  before_action :require_login
   helper_method :current_user, :format_local_time, :format_report_time, :format_priority
 
 
@@ -40,17 +40,6 @@ class ApplicationController < ActionController::Base
 
   def require_login
     redirect_to welcome_path unless current_user
-  end
-
-  def require_completed_task
-    if current_user
-      tasks = current_user.pending_tasks
-      if tasks.any?
-        tasks.each do |task|
-          redirect_to task if task.task_in_progress
-        end
-      end
-    end
   end
 
 end
