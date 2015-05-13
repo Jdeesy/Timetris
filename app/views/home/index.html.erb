@@ -1,12 +1,8 @@
 <% if @task %>
 	<%= render "tasks/in_progress" %>
-
 <% else %>
-
 	<% if @time_to_next_event > 0 %>
-
 		<h1>Status: Free</h1>
-
 		<% if @time_to_next_event >= 1440 %>
 			<h2>Relax! You have no more events today.</h2>
 		<% else %>
@@ -14,24 +10,15 @@
 		<% end %>
 
 			<% if @tasks.any? %>
-
 				<h2>Here are some things to do before your next event:</h2>
-
 				  <% @tasks.each do |task| %>
 				      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
 				  <% end %>
-
 			<% elsif current_user.pending_tasks.any? %>
-
 				<h3>You don't have enough time to complete any tasks.  Perhaps later?</h3>
-
 			<% else %>
-
-				<h3>You don't have any tasks on your list!</h3>
-
+				<h3>You don't have any tasks on your list.  You can add tasks from the "My Tasks" tab.</h3>
 			<% end %>
-
-	<%# elsif @task.task_in_progress %>
 
 	<% else %>
 
