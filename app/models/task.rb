@@ -2,6 +2,13 @@ class Task < ActiveRecord::Base
   belongs_to :creator, class_name: "User"
   validates :time_box, :inclusion => { in: 1..1440 }
   validates :priority, :inclusion => { in: 1..3 }
+  validates :name, length: { in: 4..140 }
+  validate :due_date_validation
+
+  def due_date_validation
+    errors.add(:due_date, "can't be in the past") if
+      !due_date.blank? and due_date < Date.today
+  end
 
   def target_finish_time
     Time.at(self.start_time).utc + (self.time_box * 60)
