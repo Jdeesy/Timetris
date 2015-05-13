@@ -1,10 +1,9 @@
- <meta http-equiv="refresh" content="60">
+<meta http-equiv="refresh" content="60">
 
 <% if @task %>
 	<%= render "tasks/in_progress" %>
 
 <% else %>
-
 	<% if @time_to_next_event > 0 %>
 
 		<h1>Status: Free</h1>
