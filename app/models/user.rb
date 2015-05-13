@@ -54,15 +54,15 @@ class User < ActiveRecord::Base
   end
 
   def total_time_box
-    self.completed_tasks.map(&:time_box).reduce(:+)
+    self.completed_tasks.map(&:time_box).reduce(:+) || 0
   end
 
   def total_task_time
-    self.completed_tasks.map(&:duration).reduce(:+)
+    self.completed_tasks.map(&:duration).reduce(:+) || 0
   end
 
   def total_difference
-    self.completed_tasks.map(&:time_box_difference).reduce(:+)
+    self.completed_tasks.map(&:time_box_difference).reduce(:+) || 0
   end
 
   def average_priority
@@ -75,18 +75,16 @@ class User < ActiveRecord::Base
   def average_difference
     if total_count != 0
       return total_difference / total_count
+    else
+      0
     end
   end
 
-  def average_difference_percentage
-    return "#{(average_difference) * 100.00} %"
-  end
-
-  def average_difference_percentage_in_words
+  def average_difference_in_words
     if average_difference >= 0
-      return "#{(average_difference) * 100.00}% over"
+      return "#{average_difference} minutes under"
     else
-      return "#{(average_difference) * 100.00}% under"
+      return "#{average_difference} minutes over"
     end
   end
 

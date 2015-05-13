@@ -21,9 +21,9 @@ class Task < ActiveRecord::Base
 
   def time_box_difference_in_words
     if time_box_difference >= 0
-      return "#{time_box_difference} minutes under"
+      return "#{time_box_difference} min under"
     else
-      return "#{0 - time_box_difference} minutes over"
+      return "#{0 - time_box_difference} min over"
     end
   end
 

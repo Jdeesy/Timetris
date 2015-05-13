@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def format_report_time(time)
-    return Time.at(time).in_time_zone.strftime("%b %d, %Y")
+    return Time.at(time).in_time_zone.strftime("%m/%d/%y")
   end
 
   def format_priority(task)
