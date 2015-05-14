@@ -24,21 +24,17 @@ class TasksController < ApplicationController
 
   def start
     task = Task.find_by(id: params[:id])
-    if request.xhr?
-      render partial: "tasks/alert", locals: {task: task}
-    else
-      if !current_user.current_task
-        calendar_event = current_user.begin_task(task)
-        task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start['dateTime']))
-      end
-      redirect_to root_path
+    if !current_user.current_task
+      calendar_event = current_user.begin_task(task)
+      task.update(event_id: calendar_event.id, start_time: Time.at(calendar_event.start.dateTime))
     end
+    redirect_to root_path
   end
 
   def complete
     task = Task.find_by(id: params[:id])
     calendar_event = current_user.complete_task(task)
-    task.update(event_id: calendar_event.id, end_time: Time.at(calendar_event.end['dateTime']))
+    task.update(event_id: calendar_event.id, end_time: Time.at(calendar_event.end.dateTime))
     redirect_to root_path
   end
 

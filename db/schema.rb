@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512132528) do
+ActiveRecord::Schema.define(version: 20150514203740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150512132528) do
     t.datetime "updated_at",                                             null: false
     t.integer  "default_time_increment", default: 15
     t.datetime "snooze_until",           default: '1776-07-04 06:00:00'
+    t.datetime "last_alert",             default: '1776-07-04 06:00:00'
   end
 
 end

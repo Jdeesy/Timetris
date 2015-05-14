@@ -1,44 +1,52 @@
-<div class="col-md-12 col-sm-12 welcome-div">
-  <h2>Timetris is an app designed to optimize your productivity.</h2>
-  <p>Timetris connects with your Google Calendar to fill gaps in your daily schedule.</p>
+<div class="jumbotron welcome">
+
+  <div class="col-md-12 col-sm-12">
+    <h2>Timetris is an app designed to optimize your productivity.</h2>
+    <p>Timetris connects with your Google Calendar to fill gaps in your daily schedule.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+         <h5>Present</h5>
+        </div>
+        <div class="panel-body">
+          Start tasks and add them to your Google calendar
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5>Future</h5>
+        </div>
+        <div class="panel-body">
+          Preview a recommended schedule for the day
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5>Past</h5>
+        </div>
+        <div class="panel-body">
+          Review completed tasks and track statistics
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="col-md-12 col-sm-12">
+    <p><%= link_to image_tag("gplus.png", :border => 0), "/auth/google_oauth2", :class => 'google-signin' %></p>
+  </div>
+
+
 </div>
-
-<div class="container">
-
-  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-       <h5>Present</h5>
-      </div>
-      <div class="panel-body">
-        Start tasks and add them to your Google calendar
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h5>Future</h5>
-      </div>
-      <div class="panel-body">
-        Preview a recommended schedule for the day
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h5>Past</h5>
-      </div>
-      <div class="panel-body">
-        Review completed tasks and track statistics
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<h4>Get started by clicking on "Sign in with Google+"</h4>
-<h3>Because you can't pause life.</h3>

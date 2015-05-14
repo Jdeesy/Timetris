@@ -1,8 +1,8 @@
 <div class="alert alert-warning" role="alert">
-  <strong>You've got spare time!</strong> Would you like to start <em><%= task.name %></em>? (<%= task.time_box %> minutes)
+  <strong>You've got spare time!</strong> Would you like to start <em><%= @task.name %></em>? (<%= @task.time_box %> minutes)
 	<div class="clearfix">
 	  <div class="btn-group" role="group">
-    <%= link_to "Start Task", {:action => "start", id: "#{task.id}", method: :patch}, class: "btn btn-default", role: "button" %>
+    <%= link_to "Start Task", {:action => "start", id: "#{@task.id}", method: :patch}, class: "btn btn-default", role: "button" %>
 	    <div class="btn-group" role="group">
     		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Snooze Alerts<span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="snooze">
