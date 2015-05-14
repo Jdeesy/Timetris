@@ -23,7 +23,7 @@
 			  <div class="panel-body">
 
 			  	<p><strong><%= @task.name %></strong></p>
-			  	
+
 					<% if @task.completed? %>
 
 						<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
@@ -67,7 +67,7 @@
 
 						<div class="btn-group btn-group-justified task-buttons" role="group">
 							<div class="btn-group" role="group">
-								<%= button_to "Remove Task", task_path(@task), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+								<%= button_to "Remove Task", task_path(@task), class: "btn btn-danger", title: "remove task", method: :delete, data: { confirm: "Are you sure?" } %>
 							</div>
 						</div>
 

@@ -41,10 +41,10 @@
 
 				<div class="btn-group btn-group-justified task-buttons" role="group">
 					<div class="btn-group" role="group">
-						<%= button_to "I'm Finished", complete_task_path(@task), method: :patch, class: "btn btn-success left" %>
+						<%= button_to "I'm Finished", complete_task_path(@task), title: "finish task", method: :patch, class: "btn btn-success left" %>
 					</div>
 					<div class="btn-group" role="group">
-						<%= button_to "Cancel Task", cancel_path(@task), class: "btn btn-danger right", method: :patch %>
+						<%= button_to "Cancel Task", cancel_path(@task), class: "btn btn-danger right", title: "cancel task", method: :patch %>
 					</div>
 				</div>
 
