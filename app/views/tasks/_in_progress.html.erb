@@ -13,5 +13,6 @@
 	<h3>Target Finish Time: <%= format_local_time(@task.target_finish_time) %></h3>
 	<%= button_to "I'm Finished", complete_task_path(@task), method: :patch, class: "btn btn-default" %>
 	<%= button_to "Cancel Task", cancel_path(@task), class: "btn btn-default", method: :patch %>
-	<%= render "tasks/list_item_description" %>
+	<h2>Note:</h2>
+	<%= render "tasks/note_form" %>
 </div>

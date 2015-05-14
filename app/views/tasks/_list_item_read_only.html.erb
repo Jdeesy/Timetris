@@ -7,7 +7,11 @@
 			</div>
 			<div class="input-group date form_date">
 				<span class="input-group-addon"><span>Due:</span></span>
+					<% if task.due_date %>
 					<input class="form-control" type="date" value="<%= task.form_due_date %>" readonly>
+					<% else %>
+					<input class="form-control" type="text" value="N/A" readonly>
+					<% end %>
 			</div>
 		</div>
 	  <div class="panel-body">
