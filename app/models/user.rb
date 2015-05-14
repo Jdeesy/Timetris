@@ -185,24 +185,25 @@ class User < ActiveRecord::Base
     tasks = self.pending_tasks
 
     gaps.each do |gap|
-      start_time = gap[0]
+      gap_start_time = gap[0]
       gap_time = (gap[1]/60)
-      time_boxes = tasks.map{ |task| task.time_box}
+      possible_tasks = tasks.select{ |task| task.time_box <= gap_time}
 
-      while time_boxes.any?{ |time_box| time_box <= gap_time } 
 
-        tasks.each_with_index do |task, index|
+      while possible_tasks.any? 
+        predicted_task = possible_tasks.shift
+        if predicted_task.time_box <= gap_time 
+          event = OpenStruct.new('id' => predicted_task.id,
+                                 'summary' => predicted_task.name,
+                                 'start' => OpenStruct.new("dateTime" => Time.at(gap_start_time)),
+                                 'end' => OpenStruct.new("dateTime" => Time.at(gap_start_time + (predicted_task.time_box * 60))
+                                  ))
 
-          if task && task.time_box <= gap_time
-            all_possible_tasks << [task, start_time]
-            gap_time -= task.time_box
-            start_time += (task.time_box * 60)
-            time_boxes.delete(time_boxes[index])
-            task.time_box = 360 
-          end
-
+          tasks.delete(predicted_task)
+          all_possible_tasks << [event, gap_start_time]
+          gap_time -= predicted_task.time_box
+          gap_start_time += (predicted_task.time_box * 60)  
         end
-
       end
     end
 
