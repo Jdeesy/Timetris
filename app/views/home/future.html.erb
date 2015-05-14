@@ -1,14 +1,21 @@
+<meta http-equiv="refresh" content="60">
+
 <% if @events.any? %>
 
-  <h2>Today's Events</h2>
+  <h2>Upcoming Events</h2>
   
   <% @events.each do |event| %>
 
     <% if event[0] == :google %>
-    <div class="panel panel-primary">
-    <div class="panel-heading"><%= format_local_time_without_date(event[1]) %><div class="pull-right">Google Calendar <span class="glyphicon glyphicon-calendar"></span></div></div>
+      <div class="panel panel-primary calendar">
+        <div class="panel-heading"><%= format_local_time_without_date(event[1]) %>
+          <a target="_blank" href="https://www.google.com/calendar">
+            <div class="pull-right">Google Calendar
+            <span class="glyphicon glyphicon-calendar"></span></div>
+          </a>
+        </div>
     <% else %>
-    <div class="panel panel-default">
+      <div class="panel panel-default">
     <div class="panel-heading"><%= format_local_time_without_date(event[1]) %><div class="pull-right">Proposed Task <span class="glyphicon glyphicon-tasks"></span></div></div>
     <% end %>
     <% if event[2] == nil %>

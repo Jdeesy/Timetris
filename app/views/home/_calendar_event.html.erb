@@ -1,10 +1,11 @@
-<div class="panel panel-primary calendar-event">
-	<div class="panel-heading"><%= @next_event.summary %><span class="glyphicon glyphicon-calendar pull-right"></span></div>
-  <div class="panel-body">
-    <p><%= @next_event.description %></p>
-  	<h5>Started At:</h5>
-	  <p><%= format_local_time(@next_event.start.dateTime) %></p>
-  	<h5>Ends At:</h5>
-	  <p><%= format_local_time(@next_event.end.dateTime) %></p>
-  </div>
+<div class="col-xs-12 col-sm-6 col-md-6">
+	<div class="panel panel-primary calendar">
+		<div class="panel-heading"><%= format_local_time_without_date(@next_event.start.dateTime) %> - <%= format_local_time_without_date(@next_event.end.dateTime) %>
+		  <a target="_blank" href="https://www.google.com/calendar">
+		    <div class="pull-right">
+		    <span class="glyphicon glyphicon-calendar"></span></div>
+		  </a>
+		</div>
+	  <div class="panel-body"><%= @next_event.summary %></div>
+	</div>
 </div>
