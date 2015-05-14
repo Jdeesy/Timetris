@@ -181,7 +181,7 @@ class User < ActiveRecord::Base
         tasks.each_with_index do |task, index|
 
           if task && task.time_box <= gap_time
-            all_possible_tasks << [:task, start_time, task.name]
+            all_possible_tasks << [task, start_time]
             gap_time -= task.time_box
             start_time += (task.time_box * 60)
             time_boxes.delete(time_boxes[index])
