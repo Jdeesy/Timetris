@@ -1,16 +1,20 @@
 <meta http-equiv="refresh" content="60">
 
-<% if @events.any? %>
+<div class="jumbotron">
+
+  <% if @events.any? %>
 
   <h2>Upcoming Events</h2>
 
   <% @events.each do |e| %>
-    <% event = e[0] %>
+    <% event = e.first %>
+
     <% if event.class == Google::APIClient::Schema::Calendar::V3::Event  %>
       <div class="panel panel-primary calendar">
     <% else %>
       <div class="panel panel-default">
     <% end %>
+
         <div class="panel-heading"><%= format_local_time_without_date(event.start.dateTime) %> - <%= format_local_time_without_date(event.end.dateTime) %>
         <% if event.class == Google::APIClient::Schema::Calendar::V3::Event  %>
           <a target="_blank" href="https://www.google.com/calendar">
@@ -20,6 +24,7 @@
         <% else %>
           <div class="pull-right">Proposed Task <span class="glyphicon glyphicon-tasks"></span></div>
         <% end %>
+
         </div>
 
         <% if event.summary == nil %>
@@ -37,6 +42,3 @@
   <p>You have no upcoming Google Calendar events or Timetris tasks to complete. Add tasks by clicking on the "Manage Tasks" tab!</p>
 
 <% end %>
-
-
-
