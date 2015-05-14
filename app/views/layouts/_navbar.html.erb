@@ -14,9 +14,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" role="tablist">
         <% if current_user %>
-          <li class="<%= 'active' if current_page?(past_path) %>"><%= link_to "Past", past_path %></li>
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Present", root_path %></li>
           <li class="<%= 'active' if current_page?(future_path) %>"><%= link_to "Future", future_path %></li>
+          <li class="<%= 'active' if current_page?(past_path) %>"><%= link_to "Past", past_path %></li>
         <% else %>
           <li class="<%= 'active' if current_page?(welcome_path) %>"><%= link_to "Welcome", root_path %></li>
         <% end %>
