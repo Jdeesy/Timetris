@@ -16,8 +16,7 @@ class UsersController < ApplicationController
       upcoming_events = current_user.upcoming_events
       task = current_user.possible_tasks(upcoming_events).first
       if task
-        current_user.last_alert = Time.now
-        current_user.save
+        current_user.update(last_alert: Time.now)
         render json: task
       else
         render nothing: true
