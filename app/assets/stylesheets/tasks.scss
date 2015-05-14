@@ -16,7 +16,7 @@
 		.date-label {
 			display: inline;
 		}
-		.date {
+		.date, .task-name-form {
 			display: table;
 
 			.input-group-addon {
@@ -55,10 +55,10 @@
 	}
 }
 
-#new_task {
+.task-name-form {
 	display: table;
 
 	[name="task[name]"] {
-		border-radius: 4px 0px 0px 4px;
+		border-radius: 4px 0px 0px 4px !important;
 	}
 }
