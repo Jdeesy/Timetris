@@ -1,0 +1,11 @@
+.progress {
+  width: 100%;
+  background: white;
+  text-align: center;
+
+  #progress-ticker {
+    width: 0%;
+    background: blue;
+    color: red;
+  }
+}

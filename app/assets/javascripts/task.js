@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   $(document).on("click", ".task .task-edit", function(e) {
     e.preventDefault();
-    var nameHeader = $(this).parent().parent()
+    var nameHeader = $(this).parent().parent();
     var taskID = nameHeader.parent().parent().attr('id');
 
     $.ajax({
@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   $(document).on("submit", ".task .name form", function(e) {
     e.preventDefault();
-    var taskForm = $(this).parent()
+    var taskForm = $(this).parent();
     var taskID = taskForm.parent().parent().parent().attr('id');
     var formData = $(this).serialize();
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
   $(".edit_task input[type='date']").change(function(e) {
     $(this).parent().submit();
-  })
+  });
 
   $(document).on("click", ".task .timebox-subtract", function(e) {
     e.preventDefault();

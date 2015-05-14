@@ -61,9 +61,14 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find_by(id: params[:id])
-    @task.destroy
-    redirect_to tasks_path
+    task = Task.find_by(id: params[:id])
+    if task.end_time
+      task.destroy
+      redirect_to past_path
+    else
+      task.destroy
+      redirect_to tasks_path
+    end
   end
 
   def update
