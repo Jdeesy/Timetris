@@ -1,0 +1,4 @@
+<% case task.due_date %>
+<% when task.due_date %>
+  <span class="label label-default"><%= format_local_date(task.due_date) %></span>
+<% end %>

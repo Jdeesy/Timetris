@@ -1,9 +1,10 @@
-<meta http-equiv="refresh" content="60">
-
 <div class="container">
+
 <% if @task %>
 	<%= render "tasks/in_progress" %>
 <% else %>
+	<meta http-equiv="refresh" content="60">
+
 	<% if @time_to_next_event > 0 %>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-success user-status">
@@ -27,11 +28,11 @@
 			</div>
 		</div>
 
-	<% if @tasks.any? %>
-	  <% @tasks.each do |task| %>
-	      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
-	  <% end %>
-	<% end %>
+		<% if @tasks.any? %>
+		  <% @tasks.each do |task| %>
+		      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
+		  <% end %>
+		<% end %>
 
 	<% else %>
 
@@ -52,4 +53,3 @@
   </div>
 	<% end %>
 <% end %>
-</h4>

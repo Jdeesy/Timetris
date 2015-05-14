@@ -16,7 +16,7 @@
 		.date-label {
 			display: inline;
 		}
-		.date {
+		.date, .task-name-form {
 			display: table;
 
 			.input-group-addon {
@@ -30,14 +30,14 @@
 			border-radius: 4px 0px 0px 4px;
 		}
 	}
+}
 
-	.task-buttons {
-		.start {
-			border-radius: 4px 0px 0px 4px;
-		}
-		.remove {
-			border-radius: 0px 4px 4px 0px;
-		}
+.task-buttons {
+	.left {
+		border-radius: 4px 0px 0px 4px;
+	}
+	.right {
+		border-radius: 0px 4px 4px 0px;
 	}
 }
 
@@ -49,10 +49,16 @@
 	}
 }
 
-#new_task {
+.note-form {
+	input, textarea {
+		margin-bottom: 20px;
+	}
+}
+
+.task-name-form {
 	display: table;
 
 	[name="task[name]"] {
-		border-radius: 4px 0px 0px 4px;
+		border-radius: 4px 0px 0px 4px !important;
 	}
 }

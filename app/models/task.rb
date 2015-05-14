@@ -34,6 +34,10 @@ class Task < ActiveRecord::Base
     end
   end
 
+  def completed?
+    return self.start_time && self.end_time
+  end
+
   def task_in_progress
     self.start_time && !self.end_time
   end
