@@ -1,34 +1,55 @@
 <meta http-equiv="refresh" content="60">
 
+<div class="container">
 <% if @task %>
 	<%= render "tasks/in_progress" %>
 <% else %>
 	<% if @time_to_next_event > 0 %>
-		<h1>Status: Free</h1>
-		<% if @time_to_next_event >= 1440 %>
-			<h2>Relax! You have no more events today.</h2>
-		<% else %>
-			<h2>You have <span id="refresh"><%= time_ago_in_words(@time_to_next_event.minutes.from_now) %></span> until your next event.</h2>
-		<% end %>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-success user-status">
+			  <div class="panel-heading">
+			    <p>Status: <strong>Free</strong></p>
+			  </div>
 
-			<% if @tasks.any? %>
-				<h2>Here are some things to do before your next event:</h2>
-				  <% @tasks.each do |task| %>
-				      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
-				  <% end %>
-			<% elsif current_user.pending_tasks.any? %>
-				<h3>You don't have enough time to complete any tasks.  Perhaps later?</h3>
-			<% else %>
-				<h3>You don't have any tasks on your list.  You can add tasks from the "My Tasks" tab.</h3>
-			<% end %>
+				<% if @time_to_next_event >= 1440 %>
+					<div class="panel-body">Relax! You have no more events today.
+				<% else %>
+					<div class="panel-body">You have <strong><%= time_ago_in_words(@time_to_next_event.minutes.from_now) %></strong> until your next event.
+				<% end %>
+
+				<% if @tasks.any? %>
+					Here are some tasks to complete:</div>
+				<% elsif current_user.pending_tasks.any? %>
+					You don't have enough time to complete any tasks.  Perhaps later?</div>
+				<% else %>
+					You don't have any tasks on your list.  You can add tasks from the "Manage Tasks" tab.</div>
+				<% end %>
+			</div>
+		</div>
+
+	<% if @tasks.any? %>
+	  <% @tasks.each do |task| %>
+	      <%= render partial: "tasks/list_item_read_only", locals: {task: task} %>
+	  <% end %>
+	<% end %>
 
 	<% else %>
 
-		<h1>Status: Busy</h1>
-		<h2>It looks like you're busy with the following event:</h2>
-		<%= render "calendar_event" %>
-	  <p>We'll let you get back to it!</p>
-	  <p>Finished early?  <%= link_to "Click here", complete_calendar_path %> to end your event and find a task from your list!</p>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-danger user-status">
+		  <div class="panel-heading">
+		    <p>Status: <strong>Busy</strong></p>
+		  </div>
+			<div class="panel-body">It looks like you're busy with the following event:</div>
+		</div>
+	</div>
 
+	<%= render "calendar_event" %>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	  <h4>We'll let you get back to it!</h4>
+	  <h5>Finished early?  <%= link_to "Click here", complete_calendar_path %> to end your event and find a task from your list!</h5>
+  </div>
 	<% end %>
 <% end %>
+</h4>

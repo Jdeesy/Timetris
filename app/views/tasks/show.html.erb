@@ -1,9 +1,15 @@
 <% if @task.start_time == nil %>
-	<%= render "pending" %>
+	<h2>Task: <%= @task.name %></h2>
 <% elsif @task.end_time %>
-  <%= render "completed" %>
+  <h2>Finished Task: <%= @task.name %></h2>
+	<h3>Task Note: <%= @task.description %></h3>
+	<h3>Start Time: <%= format_local_time(@task.start_time) %></h3>
+	<h3>Finish Time: <%= format_local_time(@task.end_time) %></h3>
 <% else %>
   <%= render "in_progress" %>
 <% end %>
-<%= render "tasks/list_item_description" %>
+
+<h2>Notes:</h2>
+<%= render "tasks/note_form" %>
+
 <%= button_to "Remove Task", task_path(@task), class: "btn btn-default pull-right", method: :delete, data: { confirm: "Are you sure?" } %>
