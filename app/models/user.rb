@@ -137,9 +137,6 @@ class User < ActiveRecord::Base
     gap = []
     counter = 0
 
-    # Just a test - this basically add 3 minutes to the time and then rounds it to the nearest 3 min, adds buffer between events/tasks - can change the 3 min to anything we want like 5 min or 10 but yeah
-    # Time.at((((((Time.now.to_i + ( 3 * 60))  / 60) / 3 ) * 3) * 60))
-
     sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 
     if sorted_events[0][2] > Time.now.to_i
@@ -175,12 +172,24 @@ class User < ActiveRecord::Base
     tasks = self.pending_tasks
 
     gaps.each do |gap|
-      tasks.each do |task|
-        if task.time_box <= (gap[1]/60)
-          all_possible_tasks << [:task, gap[0], task.name]
-          tasks.delete(task)
-          break
+      start_time = gap[0]
+      gap_time = (gap[1]/60)
+      time_boxes = tasks.map{ |task| task.time_box}
+
+      while time_boxes.any?{ |time_box| time_box <= gap_time } 
+
+        tasks.each_with_index do |task, index|
+
+          if task && task.time_box <= gap_time
+            all_possible_tasks << [:task, start_time, task.name]
+            gap_time -= task.time_box
+            start_time += (task.time_box * 60)
+            time_boxes.delete(time_boxes[index])
+            task.time_box = 360 
+          end
+
         end
+
       end
     end
 
