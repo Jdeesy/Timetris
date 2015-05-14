@@ -142,9 +142,9 @@ class User < ActiveRecord::Base
 
     sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 
-    # if sorted_events[0][2] > Time.now.to_i
-    #   gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
-    # end
+    if sorted_events[0][2] > Time.now.to_i
+      gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
+    end
 
     sorted_events.each do |event|
       case event[0]
@@ -175,12 +175,24 @@ class User < ActiveRecord::Base
     tasks = self.pending_tasks
 
     gaps.each do |gap|
-      tasks.each do |task|
-        if task.time_box <= (gap[1]/60)
-          all_possible_tasks << [:task, gap[0], task.name]
-          tasks.delete(task)
-          break
+      start_time = gap[0]
+      gap_time = (gap[1]/60)
+      time_boxes = tasks.map{ |task| task.time_box}
+
+      while time_boxes.any?{ |time_box| time_box <= gap_time } 
+
+        tasks.each_with_index do |task, index|
+
+          if task && task.time_box <= gap_time
+            all_possible_tasks << [:task, start_time, task.name]
+            gap_time -= task.time_box
+            start_time += (task.time_box * 60)
+            time_boxes.delete(time_boxes[index])
+            task.time_box = 360 
+          end
+
         end
+
       end
     end
 
