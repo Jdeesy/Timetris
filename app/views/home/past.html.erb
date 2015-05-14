@@ -1,60 +1,67 @@
-<div class="col-md-12 col-sm-12 col-xs-12 panel panel-default report-panel">
-  <div class="panel-body">
-    <p>On average you completed your tasks <strong><%= current_user.average_difference_in_words %></strong> your timebox.</p>
-  </div>
-</div>
+<% if @tasks.any? %>
 
-<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h5>Total Tasks</h5>
-    </div>
+  <div class="col-md-12 col-sm-12 col-xs-12 panel panel-default report-panel">
     <div class="panel-body">
-      <%= @count %> completed
+      <p>On average you completed your tasks <strong><%= current_user.average_difference_in_words %></strong> your timebox.</p>
     </div>
   </div>
-</div>
 
-<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-     <h5>Total Task Time</h5>
-    </div>
-    <div class="panel-body">
-      <%= @task_time %> min
-    </div>
-  </div>
-</div>
-
-<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h5>Total Timebox</h5>
-    </div>
-    <div class="panel-body">
-      <%= @time_box %> min
+  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Total Tasks</h5>
+      </div>
+      <div class="panel-body">
+        <%= @tasks.count %> completed
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       <h5>Total Task Time</h5>
+      </div>
+      <div class="panel-body">
+        <%= @task_time %> min
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5>Total Timebox</h5>
+      </div>
+      <div class="panel-body">
+        <%= @time_box %> min
+      </div>
+    </div>
+  </div>
 
 
-<table class="table table-striped">
-  <tr>
-    <th class="col-md-1">Date</th>
-    <th class="col-md-1">Task Name</th>
-    <th class="col-md-1 visible-md visible-lg">Timebox</th>
-    <th class="col-md-1 visible-md visible-lg">Task Time</th>
-    <th class="col-md-1">Timebox Difference</th>
-  </tr>
-
-  <% @tasks.each do |task| %>
+  <table class="table table-striped">
     <tr>
-      <td class="col-md-1"><%= format_report_time(task.start_time) %></td>
-      <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
-      <td class="col-md-1 visible-md visible-lg"><%= task.time_box %> min</td>
-      <td class="col-md-1 visible-md visible-lg"><%= task.duration %> min</td>
-      <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
+      <th class="col-md-1">Date</th>
+      <th class="col-md-1">Task Name</th>
+      <th class="col-md-1 visible-md visible-lg">Timebox</th>
+      <th class="col-md-1 visible-md visible-lg">Task Time</th>
+      <th class="col-md-1">Timebox Difference</th>
     </tr>
-  <% end %>
 
-</table>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td class="col-md-1"><%= format_report_time(task.start_time) %></td>
+        <td class="col-md-1"><%= link_to "#{task.name}", task %></td>
+        <td class="col-md-1 visible-md visible-lg"><%= task.time_box %> min</td>
+        <td class="col-md-1 visible-md visible-lg"><%= task.duration %> min</td>
+        <td class="col-md-1"><%= task.time_box_difference_in_words %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+<% else %>
+  <h2>What is a past without tasks?</h2>
+  <p>You have no completed tasks, so there's not much to see here yet.  Try checking back after you've completed some tasks to see a summary!</p>
+<% end %>
