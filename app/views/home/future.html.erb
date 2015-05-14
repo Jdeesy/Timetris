@@ -4,31 +4,38 @@
 
   <h2>Upcoming Events</h2>
   
-  <% @events.each do |event| %>
-
-    <% if event[0] == :google %>
+  <% @events.each do |e| %>
+    <% event = e[0] %>
+    <% if event.class == Google::APIClient::Schema::Calendar::V3::Event  %>
       <div class="panel panel-primary calendar">
-        <div class="panel-heading"><%= format_local_time_without_date(event[1]) %>
+    <% else %>
+      <div class="panel panel-default">
+    <% end %>
+        <div class="panel-heading"><%= format_local_time_without_date(event.start.dateTime) %> - <%= format_local_time_without_date(event.end.dateTime) %>
+        <% if event.class == Google::APIClient::Schema::Calendar::V3::Event  %>     
           <a target="_blank" href="https://www.google.com/calendar">
             <div class="pull-right">Google Calendar
             <span class="glyphicon glyphicon-calendar"></span></div>
           </a>
+        <% else %>
+          <div class="pull-right">Proposed Task <span class="glyphicon glyphicon-tasks"></span></div>
+        <% end %>
         </div>
-    <% else %>
-      <div class="panel panel-default">
-    <div class="panel-heading"><%= format_local_time_without_date(event[1]) %><div class="pull-right">Proposed Task <span class="glyphicon glyphicon-tasks"></span></div></div>
-    <% end %>
-    <% if event[2] == nil %>
-    <div class="panel-body">No Event Title</div>
-    <% else %>
-    <div class="panel-body"><%= event[2] %></div>
-    <% end %>
-    </div>
+
+        <% if event.summary == nil %>
+          <div class="panel-body">No Event Title</div>
+        <% else %>
+          <div class="panel-body"><%= event.summary %></div>
+        <% end %>
+      </div>
+
   <% end %>
 
-  <% else %>
+<% else %>
+
     <h2>Your future is uncertain...</h2>
     <p>You have no upcoming Google Calendar events or Timetris tasks to complete. Add tasks by clicking on "My Tasks" in the upper right-hand corner!</p>
+
 <% end %>
 
 

@@ -38,11 +38,10 @@ class HomeController < ApplicationController
   def future
     @upcoming_events = current_user.upcoming_events
     google_events = []
-    @upcoming_events.each{ |event| google_events << [event, event.start["dateTime"].to_i, event.summary]}
+    @upcoming_events.each{ |event| google_events << [event, event.start["dateTime"].to_i] }
 
-    @predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
-
-    @events = google_events + @predicted_events
+    predicted_events = current_user.predict_tasks(current_user.find_the_gaps(current_user.sort_upcoming_events(@upcoming_events)))
+    @events = google_events + predicted_events
     @events.sort_by!{ |e| e[1] }
   end
 end
