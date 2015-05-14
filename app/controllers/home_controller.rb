@@ -15,8 +15,6 @@ class HomeController < ApplicationController
 
   def past
     @tasks = current_user.completed_tasks.sort_by{ |task| task.end_time }.reverse
-
-    @count = current_user.total_count
     @time_box = current_user.total_time_box
     @task_time = current_user.total_task_time
     @avg_difference = current_user.average_difference

@@ -1,15 +1,75 @@
-<% if @task.start_time == nil %>
-	<h2>Task: <%= @task.name %></h2>
-<% elsif @task.end_time %>
-  <h2>Finished Task: <%= @task.name %></h2>
-	<h3>Task Note: <%= @task.description %></h3>
-	<h3>Start Time: <%= format_local_time(@task.start_time) %></h3>
-	<h3>Finish Time: <%= format_local_time(@task.end_time) %></h3>
-<% else %>
-  <%= render "in_progress" %>
-<% end %>
+<div class="container">
+	<div class="col-xs-12 col-sm-12 col-md-12">
 
-<h2>Notes:</h2>
-<%= render "tasks/note_form" %>
+		<% if @task.completed? %>
+			<div class="panel panel-primary calendar">
+		<% else %>
+			<div class="panel panel-default">
+		<% end %>
 
-<%= button_to "Remove Task", task_path(@task), class: "btn btn-default pull-right", method: :delete, data: { confirm: "Are you sure?" } %>
+
+			<div class="panel-heading">
+
+				<% if @task.completed? %>
+					<%= format_local_date(@task.start_time) %>
+				<% else %>
+					Task Pending
+				<% end %>
+		    <div class="pull-right">
+		    <span class="glyphicon glyphicon-tasks"></span></div>
+			</div>
+		  <div class="panel-body">
+
+		  	<p><strong><%= @task.name %></strong></p>
+		  	
+				<% if @task.completed? %>
+
+					<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+					      <h5>Started at</h5>
+					    </div>
+					    <div class="panel-body">
+					      <%= format_local_time_without_date(@task.start_time) %>
+					    </div>
+					  </div>
+					</div>
+
+					<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+					     <h5>Ended at</h5>
+					    </div>
+					    <div class="panel-body">
+					      <%= format_local_time_without_date(@task.end_time) %>
+					    </div>
+					  </div>
+					</div>
+
+					<div class="col-md-4 col-sm-4 col-xs-12 report-panel">
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+					      <h5>Timebox Diff.</h5>
+					    </div>
+					    <div class="panel-body">
+					      <%= @task.time_box_difference_in_words %>
+					    </div>
+					  </div>
+					</div>
+
+				<% end %>
+
+					<div>Note:</div>
+
+					<%= render "tasks/note_form" %>
+
+					<div class="btn-group btn-group-justified task-buttons" role="group">
+						<div class="btn-group" role="group">
+							<%= button_to "Remove Task", task_path(@task), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+						</div>
+					</div>
+
+			  </div>
+			</div>
+		</div>
+	</div>
