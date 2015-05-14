@@ -137,9 +137,6 @@ class User < ActiveRecord::Base
     gap = []
     counter = 0
 
-    # Just a test - this basically add 3 minutes to the time and then rounds it to the nearest 3 min, adds buffer between events/tasks - can change the 3 min to anything we want like 5 min or 10 but yeah
-    # Time.at((((((Time.now.to_i + ( 3 * 60))  / 60) / 3 ) * 3) * 60))
-
     sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 
     if sorted_events[0][2] > Time.now.to_i
