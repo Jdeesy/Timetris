@@ -40,12 +40,33 @@ function getEachSecond() {
 
     var progressBar = $(".progress-ticker");
 
-    $(".hours").html(hours);
-    $(".minutes").html(minutes);
-    $(".seconds").html(seconds);
+    if (hours >= 10) {
+      $(".hours").html(hours);
+    } else if (hours > 0) {
+      $(".hours").html('0' + hours);
+    } else {
+      $(".hours").html('00');
+    }
+
+    if (minutes >= 10) {
+      $(".minutes").html(": " + minutes);
+    } else if (minutes > 0) {
+      $(".minutes").html(': 0' + minutes);
+    } else {
+      $(".minutes").html(': 00');
+    }
+
+    if (seconds >= 10) {
+      $(".seconds").html(": " + seconds);
+    } else if (seconds > 0) {
+      $(".seconds").html(': 0' + seconds);
+    } else {
+      $(".seconds").html(': 00');
+    }
 
     if (percent >= 100) {
       percent = 100;
+      console.log(percent);
       progressBar.removeClass("progress-bar-active");
       progressBar.addClass("progress-bar-danger");
     }

@@ -22,6 +22,7 @@ gem 'rake'
 gem 'bootstrap-sass'
 
 group :development, :test do
+  gem 'capybara'
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'

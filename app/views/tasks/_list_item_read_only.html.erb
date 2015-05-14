@@ -2,19 +2,29 @@
 	<div class="panel panel-info task" id="<%= task.id %>">
 		<div class="panel-heading">
 			<div>
-				<h5 class="visible-md visible-lg"><%= task.name.truncate(140) %></h5>
-				<h5 class="visible-sm visible-xs"><%= task.name.truncate(76) %></h5>
-			</div>
-			<div class="input-group date form_date">
-				<span class="input-group-addon"><span>Due:</span></span>
-					<% if task.due_date %>
-					<input class="form-control" type="date" value="<%= task.form_due_date %>" readonly>
-					<% else %>
-					<input class="form-control" type="text" value="N/A" readonly>
-					<% end %>
+				<div class="visible-md visible-lg">
+					<%= task.name.truncate(140) %>
+					<div class="pull-right">
+			    <span class="glyphicon glyphicon-tasks"></span></div>
+				</div>
+				<div class="visible-sm visible-xs">
+					<%= task.name.truncate(76) %>
+					<div class="pull-right">
+			    <span class="glyphicon glyphicon-tasks"></span></div>
+				</div>
 			</div>
 		</div>
 	  <div class="panel-body">
+	  	<div class="option">
+	  		<div class="col-xs-4 col-sm-4 col-md-4 option">
+		  		<h5>Due: </h5>
+	  		</div>
+	  		<div class="col-xs-8 col-sm-8 col-md-8 option">
+		  		<h4 class="timebox-tag">
+		  			<%= render partial: "tasks/due_tag", locals: {task: task} %>
+		  		</h4>
+				</div>
+		  </div>
 		  <div class="option">
 	  		<div class="col-xs-4 col-sm-4 col-md-4 option">
 		  		<h5>Timebox: </h5>
@@ -39,7 +49,7 @@
 		<div class="panel-footer">
 		  <div class="btn-group btn-group-justified task-buttons" role="group" aria-label="...">
 		  	<div class="btn-group" role="group">
-					<%= button_to "Start Task", start_task_path(task), class: "btn btn-default start", method: :patch %>
+					<%= button_to "Start Task", start_task_path(task), class: "btn btn-default", method: :patch %>
 				</div>
 			</div>
 

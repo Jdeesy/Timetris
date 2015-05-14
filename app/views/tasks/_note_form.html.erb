@@ -1,4 +1,6 @@
-<%= form_for @task do |f| %>
-  <%= f.text_area :description, cols: 50, rows: "4" %><br>
-  <%= f.submit "Submit Note" %>
-<% end %>
+<div class="note-form">
+	<%= form_for @task do |f| %>
+	  <%= f.text_area :description, cols: 50, rows: "4", class: "form-control" %>
+	  <%= f.submit "Save Note", class: "btn btn-primary" %>
+	<% end %>
+</div>

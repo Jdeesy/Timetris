@@ -48,7 +48,7 @@ function hudNotify(task) {
 }
 
 function browserUnsupported() {
-	alert('Your browser is not supported.  Timetris supports the latest versions of Chrome, Firefox, Safari, and Opera.');
+	alert('Your browser does not support desktop notifications.  Timetris supports the latest versions of Chrome, Firefox, Safari, and Opera.');
     return;
 }
 
