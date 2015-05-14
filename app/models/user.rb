@@ -142,9 +142,9 @@ class User < ActiveRecord::Base
 
     sorted_events << [:start, "End of Time", (Time.now.to_i + (60*60*6))]
 
-    if sorted_events[0][2] > Time.now.to_i
-      gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
-    end
+    # if sorted_events[0][2] > Time.now.to_i
+    #   gaps << calculate_gap_time([Time.now.to_i, sorted_events[0][2]])
+    # end
 
     sorted_events.each do |event|
       case event[0]
