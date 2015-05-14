@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :require_login
-  helper_method :current_user, :format_local_time, :format_local_time_without_date, :format_local_date, :format_report_time, :format_priority
+  helper_method :current_user, :format_local_time, :format_local_time_without_date, :format_local_date, :format_report_time, :format_datepicker_time, :format_priority
 
 
   def current_user
@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
 
   def format_report_time(time)
     return Time.at(time).in_time_zone.strftime("%m/%d/%y")
+  end
+
+  def format_datepicker_time(time)
+    return Time.at(time).in_time_zone.strftime("%y-%m-%d")
   end
 
   def format_priority(task)

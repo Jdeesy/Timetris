@@ -30,10 +30,6 @@ $(document).ready(function(){
     });
   });
 
-  // $(".task .form_date .due_date").change(function(e) {
-  //   $(this).parent().submit();
-  // });
-
   $(".edit_task input[type='date']").change(function(e) {
     $(this).parent().submit();
   });

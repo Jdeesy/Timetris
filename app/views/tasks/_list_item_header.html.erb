@@ -1,6 +1,10 @@
-<div class="name">
-	<%= task.name %>
+<h5 class="visible-md visible-lg"><%= task.name.truncate(48) %>
 	<a href="#" class="task-edit">
-		<span class="glyphicon glyphicon-pencil"></span>
+		<span class="glyphicon glyphicon-pencil" title="edit title"></span>
 	</a>
-</div>
+</h5>
+<h5 class="visible-sm visible-xs"><%= task.name.truncate(32) %>
+	<a href="#" class="task-edit">
+		<span class="glyphicon glyphicon-pencil" title="edit title"></span>
+	</a>
+</h5>
