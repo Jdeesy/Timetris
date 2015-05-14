@@ -1,18 +1,21 @@
-<h2>Manage Tasks</h2>
+<div class="jumbotron">
 
-<%= render partial: "tasks/new" %>
+	<h2>Manage Tasks</h2>
 
-<br>
+	<%= render partial: "tasks/new" %>
 
-<% if @tasks.any? %>
-  <% @tasks.each do |task| %>
-    <%= render partial: "tasks/list_item", locals: {task: task} %>
-  <% end %>
-<% else %>
-<ul class="list-group">
-	<li class="list-group-item task">
-  	<h4 class="list-group-item-heading">You don't have any tasks.</h4>
-	</li>
-</ul>
-<% end %>
+	<br>
 
+	<% if @tasks.any? %>
+	  <% @tasks.each do |task| %>
+	    <%= render partial: "tasks/list_item", locals: {task: task} %>
+	  <% end %>
+	<% else %>
+	<ul class="list-group">
+		<li class="list-group-item task">
+	  	<h4 class="list-group-item-heading">You don't have any tasks.</h4>
+		</li>
+	</ul>
+	<% end %>
+
+</div>

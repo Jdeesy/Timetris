@@ -1,29 +1,19 @@
-var lastTask = {id: 0};
-
 $(document).ready(function(){
-	getEachMinute();
+	getSuggestedTask();
 	$(document).on("click", ".snooze", setSnoozeTime)
 });
 
 function getSuggestedTask() {
-  $.get("/").done(parseTask);
+  $.get("/users/alert").done(parseTask);
+  window.setTimeout(getSuggestedTask, 60000);
 }
 
 function parseTask(task) {
 	if (task !== null) {
-    if (lastTask.id !== task.id) {
-      lastTask = task;
-      onScreenNotify(task);
-      if (!document.hasFocus()) {
-        hudNotify(task);
-      }
+    if (!document.hasFocus()) {
+      hudNotify(task);
     }
 	}
-}
-
-function onScreenNotify(task) {
-  $.get("/tasks/" + task.id + "/start").done(appendAlert);
-
 }
 
 function hudNotify(task) {
@@ -69,12 +59,3 @@ function setSnoozeTime(e) {
 		data: JSON.stringify({"user": {"snooze_until": snoozeDateTime}})
 	})
 }
-
-function getEachMinute() {
-  window.setTimeout(getEachMinute, 60000);
-  $.get("/users/alerts").done(function(r) {
-  	if (r.alerts === true) {
-  		getSuggestedTask();
-  	}
-  })
- }

@@ -32,19 +32,19 @@ class User < ActiveRecord::Base
   end
 
   def completed_tasks
-    self.tasks.select{ |task| task.end_time }
+    self.tasks.select{ |task| task.end_time }.sort_by{ |task| task.end_time }.reverse
   end
 
   def pending_tasks
     tasks = self.tasks.reject{ |task| task.end_time }
     due_tasks = tasks.select{ |task| task.due_date }.sort_by{ |task| [task.due_date, task.priority] }
-    no_due_task = tasks.reject{ |task| task.due_date }.sort_by(&:priority)
-    pending = due_tasks + no_due_task
+    tasks_without_due_date = tasks.reject{ |task| task.due_date }.sort_by(&:priority)
+    pending = due_tasks + tasks_without_due_date
     return pending
   end
 
   def current_task
-    self.pending_tasks.select{ |task| task.task_in_progress }[0]
+    self.pending_tasks.select{ |task| task.task_in_progress }.first
   end
 
   def possible_tasks(events)
@@ -92,6 +92,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def task_alert(events)
+    if show_alerts
+      puts "alerts enabled"
+      task = possible_tasks(events).first
+      if task
+        self.last_alert = Time.now
+        self.save
+        return task
+      end
+    end
+  end
+
   def alerts_enabled
     if self.snooze_until
       return true
@@ -104,13 +116,14 @@ class User < ActiveRecord::Base
     if enabled == "1" ||  enabled == true
       self.snooze_until ||= Time.new(1776, 07, 04, 0, 0, 0)
     else
+      self.last_alert = Time.new(1776, 07, 04, 0, 0, 0)
       self.snooze_until = nil
     end
   end
 
   def show_alerts
     if self.snooze_until
-      return Time.at(self.snooze_until).utc < Time.now.utc
+      return Time.at(self.snooze_until).utc < Time.now.utc && (self.last_alert + 900) <= Time.now
     else
       return false
     end

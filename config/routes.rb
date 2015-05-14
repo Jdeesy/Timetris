@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   root 'home#index'
-  get '/completed' => 'home#completed', as: 'completed'
-  get '/past' => 'home#past', as: 'past'
   get '/welcome' => 'home#welcome', as: 'welcome'
   get '/future' => 'home#future', as: 'future'
+  get '/past' => 'home#past', as: 'past'
+
   get '/complete_calendar' => 'home#complete_calendar', as: 'complete_calendar'
 
   patch '/tasks/:id/start' => 'tasks#start', as: "start_task"
@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   post '/tasks/:id/pr_add' => 'tasks#priority_add'
 
   get '/tasks/:id/start' => 'tasks#start'
-  get '/users/alerts' => 'users#alerts'
+
+  get '/users/alert' => 'users#alert'
   patch '/users/snooze' => 'users#snooze'
 
   get '/settings' => 'users#edit', as: 'edit_user'

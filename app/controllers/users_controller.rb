@@ -11,13 +11,25 @@ class UsersController < ApplicationController
     redirect_to edit_user_path
   end
 
+  def alert
+    if request.xhr? && current_user.show_alerts
+      upcoming_events = current_user.upcoming_events
+      task = current_user.possible_tasks(upcoming_events).first
+      if task
+        current_user.last_alert = Time.now
+        current_user.save
+        render json: task
+      else
+        render nothing: true
+      end
+    else
+      render nothing: true
+    end
+  end
+
   def snooze
     current_user.update(user_params)
     render :nothing => true
-  end
-
-  def alerts
-    render json: { alerts: current_user.show_alerts }.to_json
   end
 
   private
