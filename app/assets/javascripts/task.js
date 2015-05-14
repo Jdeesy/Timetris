@@ -101,11 +101,11 @@ $(document).ready(function(){
       data: data
     })
 
-    // .success(function(r) {
-    //   var save = $("<div class='alert alert-success' role='alert'>Changes saved!</div>")
-    //     $('.jumbotron').append(save);
-    //     save.fadeOut(2000);
-    // });
+    .success(function(r) {
+      var save = $("<div class='alert alert-success' role='alert'>Changes saved!</div>");
+        $('.jumbotron').append(save);
+        save.fadeOut(3000);
+    });
   });
 
 });
