@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/chi-rock-doves-2015/Timetris.svg?branch=master)](https://travis-ci.org/chi-rock-doves-2015/Timetris)
 
-# Timetris
+# ![schema](./logo.png) Timetris
 
 ## Timetris is an app designed to optimize your productivity.
 ### Timetris connects with your Google Calendar to fill gaps in your daily schedule.
