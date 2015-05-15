@@ -9,6 +9,7 @@ function getSuggestedTask() {
 }
 
 function parseTask(task) {
+  console.log(task);
 	if (task != "") {
     if (!document.hasFocus()) {
       hudNotify(task);

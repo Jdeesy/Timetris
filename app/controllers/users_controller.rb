@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:alert]
 
   def edit
     @user = current_user
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def alert
-    if request.xhr? && current_user.show_alerts
+    if current_user && current_user.show_alerts && request.xhr?
       upcoming_events = current_user.upcoming_events
       task = current_user.possible_tasks(upcoming_events).first
       if task
