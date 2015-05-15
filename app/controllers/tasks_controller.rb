@@ -13,7 +13,8 @@ class TasksController < ApplicationController
 
   def show
     @browser_timezone = browser_timezone
-    if @task = Task.find_by(id: params[:id])
+    @task = Task.find_by(id: params[:id])
+    if @task && @task.creator == current_user
       if request.xhr?
         render json: @task
       end
