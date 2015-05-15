@@ -2,6 +2,16 @@
 
 # Timetris
 
+## Timetris is an app designed to optimize your productivity.
+### Timetris connects with your Google Calendar to fill gaps in your daily schedule.
+
+#### Present
+Start tasks and add them to your Google calendar
+####Future
+Preview a recommended schedule for the day
+####Past
+Review completed tasks and track statistics
+
 ## Team Strategy
 
 1) Homies Help Homies, ask for help if you get stuck for 15-30 min.
