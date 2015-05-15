@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 name">
-	<div class="panel panel-info task" id="<%= task.id %>">
+	<div class="panel panel-default task" id="<%= task.id %>">
 		<div class="panel-heading">
 			<div>
 				<div class="visible-md visible-lg">
@@ -49,7 +49,7 @@
 		<div class="panel-footer">
 		  <div class="btn-group btn-group-justified task-buttons" role="group" aria-label="...">
 		  	<div class="btn-group" role="group">
-					<%= button_to "Start Task", start_task_path(task), class: "btn btn-default", title: "start task", method: :patch %>
+					<%= button_to "Start Task", start_task_path(task), class: "btn btn-primary", title: "start task", method: :patch %>
 				</div>
 			</div>
 
